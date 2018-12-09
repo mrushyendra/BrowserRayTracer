@@ -1,0 +1,25 @@
+﻿<!DOCTYPE HTML>
+<html>
+  <head>
+   Shading
+  </head> 
+   Ray tracing -- including procedural normals. <br>
+   Rendering will take a while.
+   <button onclick="render(scene)">Make the picture </button>
+  <canvas id="c" width="800" height="600"></canvas>
+  <script src="js/setup.js">	</script> <! no scaling of chunky pixels>
+  <script src="js/scene-orig.js"> </script> <! test scene for changing lights, reflectances, tone mapping>
+  <script src="js/render.js">	</script> <! uses brute force antialiasing, so slow >
+  <script src="js/trace.js">	</script> 
+  <script src="js/intersectScene.js">	</script>
+  <script src="js/sphere.js"> </script>
+  <script src="js/surface.js">	</script> <! allows lights to have colors >
+  <script src="js/shadow.js"> </script> <! issues in literate ray tracer fixed >
+  <script src="js/tonemap.js"> </script> <! make sure scene fits range 0-255 with multiple lights on>
+  <script src="js/objectnormal.js"> </script> <! separated out to allow procedural normal mapping >
+  <script src="js/tri.js"> </script> <! triangle intersection >
+  <script src="js/vector.js">	</script>
+  
+	
+  </body>
+</html>   
