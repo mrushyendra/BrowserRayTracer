@@ -1,9 +1,7 @@
 
-
-// # The Scene
-// In this file, the original red/blue/white room with overhead white light, and orange and blue corner lights
-var scene = {};
-
+function parseSceneDescr(sceneRaw){
+  return JSON.parse(sceneRaw);
+}
 
 // ## The Camera
 //
@@ -15,6 +13,7 @@ var scene = {};
 // updated for Assn 6 so that camera.vector is more descriptively camera.toPoint
 // updated for Assn 6 so that there is a camera.up instead of using vector.UP
 
+/*
 scene.camera = {
 // the eye location
     point: {
@@ -366,5 +365,5 @@ scene.mats = [
 	ambient: 0.05
 }
 ]
-
+*/
 
