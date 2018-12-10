@@ -3,7 +3,7 @@
 
 //
 function triIntersection(tri, ray) {
-  
+
 // compute triangle normal and d in plane equation
 var triNorm = triNormal(tri);
 var d = -1 * Vector.dotProduct (tri.point1, triNorm);

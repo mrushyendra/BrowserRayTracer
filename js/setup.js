@@ -37,4 +37,6 @@ function handleFileSelect(evt){
   fileReader.readAsText(files[0]);
 }
 
-
+function parseSceneDescr(sceneRaw){
+  return JSON.parse(sceneRaw);
+}

@@ -12,8 +12,8 @@
    <button onclick="render(scene)">Make the picture </button>
    <canvas id="c" width="800" height="600"></canvas>
 
-   <script src="js/setup.js">	</script>
-   <script src="js/scene-orig.js"> </script><! Reads in scene description file and creates scene object>
+   <script src="js/setup.js">	</script><!Initializes canvas and reads in scene description>
+   <script src="js/octree.js"> </script><!Creates octree from given list of objects>
    <script src="js/render.js">	</script> <! uses brute force antialiasing, so slow >
    <script src="js/trace.js">	</script> 
    <script src="js/intersectScene.js">	</script>

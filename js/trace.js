@@ -1,6 +1,6 @@
 
 
-function trace(ray, scene, depth) {
+function trace(ray, scene, octree, depth) {
     // This is a recursive method: if we hit something that's reflective,
     // then the call to `surface()` at the bottom will return here and try
     // to find what the ray reflected into. Since this could easily go
@@ -8,7 +8,7 @@ function trace(ray, scene, depth) {
     // into a reflection.
     if (depth > 3) return;
 
-    var distObject = intersectScene(ray, scene);
+    var distObject = intersectScene(ray, octree, scene);
 
     // If we don't hit anything, fill this pixel with the background color -
     // in this case, white.
@@ -27,6 +27,6 @@ function trace(ray, scene, depth) {
 
     // for Assn 5, generalize to objectNormal
 
-    return surface(ray, scene, object, pointAtTime, objectNormal(object, pointAtTime), depth);
+    return surface(ray, scene, octree, object, pointAtTime, objectNormal(object, pointAtTime), depth);
 }
 

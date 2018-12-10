@@ -1,8 +1,3 @@
-
-function parseSceneDescr(sceneRaw){
-  return JSON.parse(sceneRaw);
-}
-
 // ## The Camera
 //
 // Our camera is pretty simple: it's a point in space, where you can imagine

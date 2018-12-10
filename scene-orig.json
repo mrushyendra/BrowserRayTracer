@@ -59,7 +59,7 @@
 		}
 	],
 	"objects" : [
-		{
+		 {
 			"type": "spherelong",
 			"point": {
 			    "x": 70,
@@ -67,7 +67,17 @@
 			    "z": 50
 			},
 			"mat": 0,
-			"radius": 25
+			"radius": 25,
+      "boundingBoxPos" : {
+        "x" : 44,
+        "y" : 0,
+        "z" : 24
+      },
+      "boundingBoxDim" : {
+        "x" : 53,
+        "y" : 53,
+        "z" : 53
+      }
 		},
 		{
 			"type": "spherelong",
@@ -77,7 +87,17 @@
 				"z": 50
 			},
 			"mat": 0,
-			"radius": 10
+			"radius": 10,
+      "boundingBoxPos" : {
+        "x" : 9,
+        "y" : 0,
+        "z" : 39 
+      },
+      "boundingBoxDim" : {
+        "x" : 23,
+        "y" : 23,
+        "z" : 23
+      }
 		},
 		{
 			"type": "spherelong",
@@ -87,7 +107,17 @@
 			    "z": 60
 			},
 			"mat": 0,
-			"radius": 5
+			"radius": 5,
+      "boundingBoxPos" : {
+        "x" : 54,
+        "y" : 54,
+        "z" : 54
+      },
+      "boundingBoxDim" : {
+        "x" : 12,
+        "y" : 12,
+        "z" : 12
+      }
 		},
 		{
 			"type": "spherelong",
@@ -97,8 +127,18 @@
 			    "z": 60
 			},
 			"mat": 0,
-			"radius": 5
-		},
+			"radius": 5,
+      "boundingBoxPos" : {
+        "x" : 14,
+        "y" : 24,
+        "z" : 54
+      },
+      "boundingBoxDim" : {
+        "x" : 12,
+        "y" : 12,
+        "z" : 12
+      }		
+    },
 		{
 			"type": "triangle",
 			"point1": {
@@ -110,7 +150,17 @@
 			"point3": {
 			"x": 0, "y": 100, "z": 0
 			},
-			"mat": 1
+			"mat": 1,
+      "boundingBoxPos" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : 0 
+      },
+      "boundingBoxDim" : {
+        "x" : 102,
+        "y" : 102,
+        "z" : 2
+      }		
 		},
 		{
 			"type": "triangle",
@@ -123,7 +173,17 @@
 			"point3": {
 			"x": 0, "y": 100, "z": 0
 			},
-			"mat": 1
+			"mat": 1,
+      "boundingBoxPos" : {
+        "x" : -1,
+        "y" : -1,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 102,
+        "y" : 102,
+        "z" : 2
+      }		
 		},
 		{
 			"type": "triangle",
@@ -136,7 +196,17 @@
 			"point3": {
 			"x": 100, "y": 0, "z": 100
 			},
-			"mat": 1
+			"mat": 1,
+      "boundingBoxPos" : {
+        "x" : -1,
+        "y" : -1,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 102,
+        "y" : 2,
+        "z" : 102
+      }		
 		},
 		{
 			"type": "triangle",
@@ -149,7 +219,17 @@
 			"point3": {
 			"x": 0, "y": 0, "z": 0
 			},
-			"mat": 1
+			"mat": 1,
+      "boundingBoxPos" : {
+        "x" : -1,
+        "y" : -1,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 102,
+        "y" : 2,
+        "z" : 102
+      }		
 		},
 		{
 			"type": "triangle",
@@ -162,7 +242,17 @@
 			"point3": {
 			"x": 100, "y": 100, "z": 100	
 			},
-			"mat": 1
+			"mat": 1,
+      "boundingBoxPos" : {
+        "x" : -1,
+        "y" : 99,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 102,
+        "y" : 2,
+        "z" : 102
+      }		
 		},
 		{
 			"type": "triangle",
@@ -175,7 +265,17 @@
 			"point3": {
 			"x": 0, "y": 100, "z": 0
 			},
-			"mat": 1
+			"mat": 1,
+      "boundingBoxPos" : {
+        "x" : -1,
+        "y" : 99,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 102,
+        "y" : 2,
+        "z" : 102
+      }		
 		},
 		{
 			"type": "triangle",
@@ -188,7 +288,17 @@
 			"point3": {
 			"x": 0, "y": 100, "z": 100	
 			},
-			"mat": 2
+			"mat": 2,
+      "boundingBoxPos" : {
+        "x" : -1,
+        "y" : -1,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 102,
+        "y" : 102,
+        "z" : 102
+      }		
 		},
 		{
 			"type": "triangle",
@@ -201,7 +311,17 @@
 			"point3": {
 			"x": 0, "y": 0, "z": 0
 			},
-			"mat": 2
+			"mat": 2,
+      "boundingBoxPos" : {
+        "x" : -1,
+        "y" : -1,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 2,
+        "y" : 102,
+        "z" : 102
+      }		
 		},
 		{
 			"type": "triangle",
@@ -214,7 +334,17 @@
 			"point3": {
 			"x": 100, "y": 100, "z": 100	
 			},
-			"mat": 3
+			"mat": 3,
+      "boundingBoxPos" : {
+        "x" : 99,
+        "y" : -1,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 2,
+        "y" : 102,
+        "z" : 102
+      }		
 		},
 		{
 			"type": "triangle",
@@ -227,7 +357,17 @@
 			"point3": {
 			"x": 100, "y": 0, "z": 0
 			},
-			"mat": 3
+			"mat": 3,
+      "boundingBoxPos" : {
+        "x" : 99,
+        "y" : -1,
+        "z" : -1
+      },
+      "boundingBoxDim" : {
+        "x" : 2,
+        "y" : 102,
+        "z" : 102
+      }		
 		}
 	],
 	"mats" : [
