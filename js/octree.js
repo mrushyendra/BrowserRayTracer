@@ -23,9 +23,9 @@ function BoundingBox(pos, xDim, yDim, zDim){
       object.boundingBoxPos.z < this.pos.z){
       return -1;
     }
-    if(((object.boundingBoxPos.x + object.boundingBoxDim.x) > (this.pos.x + this.x)) ||
-      ((object.boundingBoxPos.y + object.boundingBoxDim.y) > (this.pos.y + this.y)) ||
-      ((object.boundingBoxPos.z + object.boundingBoxDim.z) > (this.pos.z + this.z))){
+    if(((object.boundingBoxPos.x + object.boundingBoxDim.x) > (this.pos.x + this.dim.x)) ||
+      ((object.boundingBoxPos.y + object.boundingBoxDim.y) > (this.pos.y + this.dim.y)) ||
+      ((object.boundingBoxPos.z + object.boundingBoxDim.z) > (this.pos.z + this.dim.z))){
       return -1;
     }
 
@@ -51,8 +51,6 @@ function Octree(boundingBoxPos, boundingBoxDim){
   this.octants[6] = new BoundingBox(new Point(boundingBoxPos.x, boundingBoxPos.y + boundingBoxDim.y/2, boundingBoxPos.z + boundingBoxDim.z/2), boundingBoxDim.x/2, boundingBoxDim.y/2, boundingBoxDim.z/2);
   this.octants[7] = new BoundingBox(new Point(boundingBoxPos.x + boundingBoxDim.x/2, boundingBoxPos.y + boundingBoxDim.y/2, boundingBoxPos.z + boundingBoxDim.z/2), boundingBoxDim.x/2, boundingBoxDim.y/2, boundingBoxDim.z/2);
 
-  console.log(this.octants);
-
   //Function pointers to object intersection functions
   this.intersectionFns = {
     "sphere" : sphereIntersection,
@@ -62,22 +60,25 @@ function Octree(boundingBoxPos, boundingBoxDim){
   }
 
   //insert single object into octree
-  this.insertObject = function(object){
+  this.insertObject = function(object, depth){
     var inserted = false;
     //check each child octant to see if object fits completely in octant. If it does, insert object recursively
+    
     /*
-    for(var j = 0; j < this.octants.length; ++j){
-      if(this.octants[j].fits(object) != -1){
-        if(this.children[j] == -1){
-          this.children[j] = new Octree(this.octants[j].pos, this.octants[j].dim);
-        } 
-        this.children[j].insertObject(object);
-        inserted = true;
-        break;
+    if(depth < 4){
+      for(var j = 0; j < this.octants.length; ++j){
+        if(this.octants[j].fits(object) != -1){
+          if(this.children[j] == -1){
+            this.children[j] = new Octree(this.octants[j].pos, this.octants[j].dim);
+          } 
+          this.children[j].insertObject(object, depth++);
+          inserted = true;
+          break;
+        }
       }
     }
     */
-
+    
     //object does not fit completely into any child octant, so insert into octree's objects array
     if(!inserted){
       this.objects.push(object);
@@ -87,11 +88,10 @@ function Octree(boundingBoxPos, boundingBoxDim){
   //insert multiple objects into octree at once
   this.insertObjects = function(objects){
     for(var i = 0; i < objects.length; ++i){
-      this.insertObject(objects[i]);
+      this.insertObject(objects[i],0);
     }
   }
   
-  //TODO: possible optmization by sorting bounding boxes
   //check if ray intersects any object in octree, return [distance, object] array if it does. Else
   //return [inf, null]
   this.intersectOctree = function(ray){ //ray = p + td; where d is the direction

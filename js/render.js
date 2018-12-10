@@ -6,7 +6,7 @@ function render(scene) {
         objects = scene.objects,
         lights = scene.lights;
 
-    var octree = new Octree(new Point(0,0,0), {x: width, y: height, z: 1000});
+    var octree = new Octree(new Point(0,0,0), {x: width, y: height, z: 500});
     octree.insertObjects(objects);
     var img = [ ];
     var img2 = [ ];
