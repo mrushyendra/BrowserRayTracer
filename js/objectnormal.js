@@ -28,4 +28,8 @@ if (object.type == 'spherelong'){
 
 if (object.type == 'triangle') return (triNormal(object));
 
+if (object.type == 'cuboid') return (cuboidNormal(object, point));
+
+if (object.type == 'cone') return (coneNormal(object, point));
+
 }
