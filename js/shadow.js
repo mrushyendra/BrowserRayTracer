@@ -9,6 +9,6 @@ function isLightVisible(pt, scene, octree, light) {
 		vector: Vector.unitVector(Vector.subtract( light, pt)) 
 		}, octree, scene);
 
-   return (distObject[0] > Vector.length(Vector.subtract(light, pt)) -.005);   // was  > -0.005
+    return (distObject[0] > Vector.length(Vector.subtract(light, pt)) -.005);   // was  > -0.005
 
 }

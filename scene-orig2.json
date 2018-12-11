@@ -60,7 +60,7 @@
 	],
 	"objects" : [
 		 {
-			"type": "spherelong",
+			"type": "sphere",
 			"point": {
 			    "x": 70,
 			    "y": 25,
@@ -78,7 +78,8 @@
             "y" : 53,
             "z" : 53
           },
-          "isTransparent" : false
+          "isTransparent" : true,
+          "refracIdx" : 1.5
 		},
 		{
 			"type": "spherelong",
@@ -99,7 +100,8 @@
             "y" : 23,
             "z" : 23
           },
-          "isTransparent" : false
+          "isTransparent" : false,
+          "refracIdx" : 1.5
 		},
 		{
 			"type": "spherelong",
@@ -120,7 +122,8 @@
             "y" : 12,
             "z" : 12
           },
-          "isTransparent" : false		
+          "isTransparent" : false,
+          "refracIdx" : 1.4
         },
 		{
 			"type": "spherelong",
@@ -141,7 +144,8 @@
             "y" : 12,
             "z" : 12
           },
-          "isTransparent" : false		
+          "isTransparent" : false,
+          "refracIdx" : 1.5
     },
 		{
 			"type": "triangle",

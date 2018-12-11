@@ -20,7 +20,7 @@ function sphereIntersection(sphere, ray) {
         // on the `v` line that also intersects the circle
         discriminant = (sphere.radius * sphere.radius) - eoDot + (v * v);
     
-        if (Math.abs(  (Vector.length(eye_to_center)-sphere.radius) /sphere.radius) < .001) return;
+        if (Math.abs(  (Vector.length(eye_to_center)-sphere.radius) /sphere.radius) < 0.1) return;
 	
     // If the discriminant is negative, that means that the sphere hasn't
     // been hit by the ray
