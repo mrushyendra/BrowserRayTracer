@@ -3,48 +3,37 @@
 /*
  * apex : {x,y,z}
  * axis : {x,y,z}
- * axisLength
  * theta
+ * scaling: sx, sy, sz
+ * translation: tx, ty, tz
+ * rotation: rx, ry, rz
  */
 
 function coneIntersection(cone, ray) {
-    
-    /*
-    //non-axis aligned cone
-    //https://www.maths.tcd.ie/~dwmalone/p/rt95.pdf
-    var alpha = Math.cos((cone.theta/180)*Math.PI);
-    var alphaSq = alpha*alpha;
+    /* Assume precomputed: 
+    calc TInv matrix from Tx, Ty, Tz
+    calc RInv matrix from rx, ry, rz
+    calc SInv matrix from sx, sy, sz
+    */    
 
-    var a = alphaSq - Math.pow(Vector.dotProduct(ray.vector, cone.axis), 2);
-    var b = 2*(alphaSq*(Vector.dotProduct(Vector.subtract(ray.point, cone.apex),ray.vector)) - (Vector.dotProduct(ray.vector, cone.axis) * 
-                Vector.dotProduct(Vector.subtract(ray.point, cone.apex), cone.axis)));
-    var c = alphaSq - Math.pow(Vector.dotProduct(Vector.subtract(ray.point, cone.apex),cone.axis),2);
+    //transform ray into object space
+    //console.log(ray);
+    var rayPtArr = [ray.point.x, ray.point.y, ray.point.z, 1];
+    rayPtArr = math.multiply(cone.SInv, math.multiply(cone.RInv, math.multiply(cone.TInv,rayPtArr))); 
+    var rayVecArr = [ray.vector.x, ray.vector.y, ray.vector.z, 0];
+    rayVecArr = math.multiply(cone.SInv, math.multiply(cone.RInv,rayVecArr)); 
 
-    var discriminant = (b*b) - (4*a*c);
-    if(discriminant < 0) return;
+    rayPtArr = rayPtArr.valueOf(); //get array representation back
+    rayVecArr = rayVecArr.valueOf();
+    var rayNew = {};
+    rayNew.point = {x: rayPtArr[0], y: rayPtArr[1], z: rayPtArr[2]};
+    rayNew.vector = {x: rayVecArr[0], y: rayVecArr[1], z: rayVecArr[2]};
+    //console.log(rayNew);
 
-    var t1 = (-b + Math.sqrt(discriminant))/(2*a);
-    var t2 = (-b - Math.sqrt(discriminant))/(2*a);
-    
-    var t = t1;
-    if(t < 0){
-        t = t2;
-    }
-    if(t < 0){
-        return;
-    }
-
-    var intersectionPt = Vector.add(ray.point, Vector.scale(ray.vector, t));
-    var b = Vector.subtract(intersectionPt, cone.apex); //vector from apex to intersection pt
-    var lenAxis = Vector.length(b)*alpha;
-    if(lenAxis > cone.axisLength)
-        return;
-    */
-    
-    //axis aligned cone along y axis
-    var a = (ray.vector.x*ray.vector.x) + (ray.vector.z*ray.vector.z) - (ray.vector.y*ray.vector.y);
-    var b = (2*ray.point.x*ray.vector.x + 2*ray.point.z*ray.vector.z - 2*ray.point.y*ray.vector.y);
-    var c = (ray.point.x*ray.point.x) + (ray.point.z*ray.point.z) - (ray.point.y*ray.point.y);
+    //calculate t
+    var a = (rayNew.vector.x*rayNew.vector.x) + (rayNew.vector.z*rayNew.vector.z) - (rayNew.vector.y*rayNew.vector.y);
+    var b = (2*rayNew.point.x*rayNew.vector.x + 2*rayNew.point.z*rayNew.vector.z - 2*rayNew.point.y*rayNew.vector.y);
+    var c = (rayNew.point.x*rayNew.point.x) + (rayNew.point.z*rayNew.point.z) - (rayNew.point.y*rayNew.point.y);
 
     var discriminant = (b*b) - (4*a*c);
     if(discriminant < 0) return;
@@ -67,19 +56,32 @@ function coneIntersection(cone, ray) {
     if(t < 0.1)
         return;
 
-    var intersectionPt = Vector.add(ray.point, Vector.scale(ray.vector, t));
+    //calculate intersection pt in object space to see if it lies in finite limits of cone
+    var intersectionPt = Vector.add(rayNew.point, Vector.scale(rayNew.vector, t));
     if((intersectionPt.y < cone.yMin) || (intersectionPt.y > cone.yMax)){
         return; //outside the finite cone
     }
     
-    return Vector.length(Vector.scale(ray.vector, t));
+    return Vector.length(Vector.scale(ray.vector, t)); //actual intersection point = ray.point + ray.vector*t
 }
 
 function coneNormal(cone, pos) {
+    //basic trigonometry to calculate length of hypotenuse, then calculate normal in object space by joining end of hyp with intersection pt
+    var intersectionPtArr = [pos.x, pos.y, pos.z, 1]; 
+    intersectionPtArr = math.multiply(cone.SInv, math.multiply(cone.RInv, math.multiply(cone.TInv,intersectionPtArr))); //convert to obj space
+    intersectionPtArr = intersectionPtArr.valueOf();
+    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space
+
     var alpha = Math.cos((cone.theta/180)*Math.PI);
-    var hyp = Vector.length(Vector.subtract(pos, cone.apex))/alpha;
+    var hyp = Vector.length(Vector.subtract(intersectionPtnew, cone.apex))/alpha;
     var b = Vector.add(cone.apex, Vector.scale(cone.axis, hyp));
-    var normal = Vector.subtract(pos, b);
+    var normalObjSpace = Vector.subtract(intersectionPtnew, b);
+
+    //convert to world space
+    var normalArr = [normalObjSpace.x, normalObjSpace.y, normalObjSpace.z, 0];
+    normalArr = math.multiply(cone.R, math.multiply(cone.SInv, normalArr));
+    normalArr = normalArr.valueOf();
+    var normal = {x: normalArr[0], y: normalArr[1], z: normalArr[2]};
 
     return Vector.unitVector(normal);
 }

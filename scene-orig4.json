@@ -71,20 +71,28 @@
                 "y" : 1,
                 "z" : 0
             },
-            "axisLength" : 30,
             "theta" : 30,
 			"mat": 1,
             "yMin" : 0,
             "yMax" : 100,
+            "Tx" : 20,
+            "Ty" : 0,
+            "Tz" : 0,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 0.5,
+            "sx" : 0.8,
+            "sy" : 0.4,
+            "sz" : 1,
             "boundingBoxPos" : {
               "x" : -100,
-              "y" : 0,
-              "z" : 0
+              "y" : -100,
+              "z" : -100
             },
             "boundingBoxDim" : {
               "x" : 200,
-              "y" : 100,
-              "z" : 100
+              "y" : 200,
+              "z" : 200
             },
             "isTransparent" : false,
             "refracIdx" : 1.5
