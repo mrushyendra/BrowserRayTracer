@@ -71,18 +71,18 @@
                 "y" : 1,
                 "z" : 0
             },
-            "theta" : 30,
+            "theta" : 45,
 			"mat": 1,
             "yMin" : 0,
             "yMax" : 100,
-            "Tx" : 20,
+            "Tx" : 0,
             "Ty" : 0,
             "Tz" : 0,
             "rx" : 0,
             "ry" : 0,
-            "rz" : 0.5,
-            "sx" : 0.8,
-            "sy" : 0.4,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
             "sz" : 1,
             "boundingBoxPos" : {
               "x" : -100,
@@ -95,7 +95,9 @@
               "z" : 200
             },
             "isTransparent" : false,
-            "refracIdx" : 1.5
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 0
 		}
 	],
 	"mats" : [
@@ -154,7 +156,12 @@
 			"lambert": 0.05,
 			"ambient": 0.05
 		}
-	]
+	],
+    "textures" : [
+        {
+            "url" : "textures/marble.jpg"
+        }
+    ]
 }
 
 

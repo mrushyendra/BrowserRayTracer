@@ -81,3 +81,25 @@ function coneNormal(cone, pos) {
 
     return Vector.unitVector(normal);
 }
+
+function coneColor(scene, cone, point){
+    //convert intersection pt to obj space
+    var intersectionPtArr = [point.x, point.y, point.z, 1]; 
+    intersectionPtArr = math.multiply(cone.SRTInv, intersectionPtArr);
+    intersectionPtArr = intersectionPtArr.valueOf();
+    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space   
+
+    //similar triangles to calculate r', then calc the angle phi that yields the x and z components of the r'
+    var height = Math.abs(cone.yMax - 0);
+    var u = Math.abs(intersectionPtnew.y);
+    var radius = height*Math.tan((cone.theta/180)*Math.PI);
+    var phi = Math.acos((intersectionPtnew.x * height)/(u*radius));
+
+    u = Math.round((u/height)*scene.textures[cone.texture].width); //scale to [0-imgWidth]
+    var v = Math.round((phi/(2*Math.PI))*scene.textures[cone.texture].height);
+    var objColor = {};
+    objColor.x = scene.textures[cone.texture].data.data[(scene.textures[cone.texture].width*v*4) + (u*4)];
+    objColor.y = scene.textures[cone.texture].data.data[(scene.textures[cone.texture].width*v*4) + (u*4) + 1];
+    objColor.z = scene.textures[cone.texture].data.data[(scene.textures[cone.texture].width*v*4) + (u*4) + 2];
+    return objColor;
+}
