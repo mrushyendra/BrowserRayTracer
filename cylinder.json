@@ -95,7 +95,9 @@
               "z" : 200
             },
             "isTransparent" : false,
-            "refracIdx" : 1.5
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 0
 		}
 	],
 	"mats" : [
@@ -158,6 +160,11 @@
     "textures" : [
         {
             "url" : "textures/woodGrain.jpg"
+        }
+    ],
+    "textures" : [
+        {
+            "url" : "textures/marble.jpg"
         }
     ]
 }

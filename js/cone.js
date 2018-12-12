@@ -90,6 +90,7 @@ function coneColor(scene, cone, point){
     var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space   
 
     //similar triangles to calculate r', then calc the angle phi that yields the x and z components of the r'
+    //phi = [0,2pi], u = [0-1]
     var height = Math.abs(cone.yMax - 0);
     var u = Math.abs(intersectionPtnew.y);
     var radius = height*Math.tan((cone.theta/180)*Math.PI);
