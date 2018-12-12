@@ -1,11 +1,11 @@
-/* Detecting collisions against a cone
+/* Detecting collisions against a cylinder
  *
  * https://www.cl.cam.ac.uk/teaching/1999/AGraphHCI/SMAG/node2.html
- * apex: tip of cone (0,0,0)
- * axis: central axis of cone (0,1,0) - aligned along y axis
+ * center: center of cyilnder (0,0,0)
+ * axis: central axis of cylinder (0,1,0) - aligned along y axis
  */
 
-function coneIntersection(cone, ray) {
+function cylinderIntersection(cylinder, ray) {
     /* Assume precomputed: 
     calc TInv matrix from Tx, Ty, Tz
     calc RInv matrix from rx, ry, rz
@@ -14,9 +14,9 @@ function coneIntersection(cone, ray) {
 
     //transform ray into object space
     var rayPtArr = [ray.point.x, ray.point.y, ray.point.z, 1];
-    rayPtArr = math.multiply(cone.SRTInv, rayPtArr);
+    rayPtArr = math.multiply(cylinder.SRTInv, rayPtArr);
     var rayVecArr = [ray.vector.x, ray.vector.y, ray.vector.z, 0];
-    rayVecArr = math.multiply(cone.SRInv, rayVecArr);
+    rayVecArr = math.multiply(cylinder.SRInv, rayVecArr);
 
     rayPtArr = rayPtArr.valueOf(); //get array representation back
     rayVecArr = rayVecArr.valueOf();
@@ -25,9 +25,9 @@ function coneIntersection(cone, ray) {
     rayNew.vector = {x: rayVecArr[0], y: rayVecArr[1], z: rayVecArr[2]};
 
     //calculate t
-    var a = (rayNew.vector.x*rayNew.vector.x) + (rayNew.vector.z*rayNew.vector.z) - (rayNew.vector.y*rayNew.vector.y);
-    var b = (2*rayNew.point.x*rayNew.vector.x + 2*rayNew.point.z*rayNew.vector.z - 2*rayNew.point.y*rayNew.vector.y);
-    var c = (rayNew.point.x*rayNew.point.x) + (rayNew.point.z*rayNew.point.z) - (rayNew.point.y*rayNew.point.y);
+    var a = (rayNew.vector.x*rayNew.vector.x) + (rayNew.vector.z*rayNew.vector.z);
+    var b = (2*rayNew.point.x*rayNew.vector.x + 2*rayNew.point.z*rayNew.vector.z);
+    var c = (rayNew.point.x*rayNew.point.x) + (rayNew.point.z*rayNew.point.z) - (cylinder.r*cylinder.r);
 
     var discriminant = (b*b) - (4*a*c);
     if(discriminant < 0) return;
@@ -50,32 +50,32 @@ function coneIntersection(cone, ray) {
     if(t < 0.1)
         return;
 
-    //calculate intersection pt in object space to see if it lies in finite limits of cone
+    //calculate intersection pt in object space to see if it lies in finite limits of cylinder
     var intersectionPt = Vector.add(rayNew.point, Vector.scale(rayNew.vector, t));
-    if((intersectionPt.y < cone.yMin) || (intersectionPt.y > cone.yMax)){
-        return; //outside the finite cone
+    if((intersectionPt.y < cylinder.yMin) || (intersectionPt.y > cylinder.yMax)){
+        return; //outside the finite cylinder
     }
     
     return Vector.length(Vector.scale(ray.vector, t)); //actual intersection point = ray.point + ray.vector*t
 }
 
-function coneNormal(cone, pos) {
+function cylinderNormal(cylinder, pos) {
     //convert intersection pt to obj space
     var intersectionPtArr = [pos.x, pos.y, pos.z, 1]; 
-    intersectionPtArr = math.multiply(cone.SRTInv, intersectionPtArr);
+    intersectionPtArr = math.multiply(cylinder.SRTInv, intersectionPtArr);
     intersectionPtArr = intersectionPtArr.valueOf();
     var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space
 
     //calculate normal in object space
     //basic trigonometry to calculate length of hypotenuse, then calculate normal in object space by joining end of hyp with intersection pt
-    var alpha = Math.cos((cone.theta/180)*Math.PI);
-    var hyp = Vector.length(Vector.subtract(intersectionPtnew, cone.apex))/alpha;
-    var b = Vector.add(cone.apex, Vector.scale(cone.axis, hyp));
-    var normalObjSpace = Vector.subtract(intersectionPtnew, b);
+    var hyp = Vector.subtract(intersectionPtnew, cylinder.center);
+    var adj = (Vector.dotProduct(hyp, cylinder.axis))/(Vector.length(cylinder.axis));
+    var adjVec = Vector.scale(cylinder.axis, adj);
+    var normalObjSpace = Vector.subtract(hyp, adjVec);
 
-    //convert to world space
+    //convert normal to world space
     var normalArr = [normalObjSpace.x, normalObjSpace.y, normalObjSpace.z, 0];
-    normalArr = math.multiply(cone.R, math.multiply(cone.SInv, normalArr));
+    normalArr = math.multiply(cylinder.R, math.multiply(cylinder.SInv, normalArr));
     normalArr = normalArr.valueOf();
     var normal = {x: normalArr[0], y: normalArr[1], z: normalArr[2]};
 

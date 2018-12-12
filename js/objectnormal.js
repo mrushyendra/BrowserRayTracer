@@ -32,4 +32,6 @@ if (object.type == 'cuboid') return (cuboidNormal(object, point));
 
 if (object.type == 'cone') return (coneNormal(object, point));
 
+if (object.type == 'cylinder') return (cylinderNormal(object, point));
+
 }

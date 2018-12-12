@@ -58,7 +58,8 @@ function Octree(boundingBoxPos, boundingBoxDim){
     "spherelong" : sphereIntersection,
     "triangle" : triIntersection,
     "cuboid" : cuboidIntersection,
-    "cone" : coneIntersection
+    "cone" : coneIntersection,
+    "cylinder" : cylinderIntersection
   }
 
   //insert single object into octree

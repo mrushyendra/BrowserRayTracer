@@ -4,7 +4,7 @@ function swap(a,b){
     b = tmp;
 }
 
-//returns fraction of light reflected. fraction of light refracted equals 1 minus this valu
+//returns fraction of light reflected. fraction of light refracted equals 1 minus this value
 function fresnel(ray, normal, refracIdx){
     var fracReflected = 0;
     var cosI = Math.max(Math.min(Vector.dotProduct(ray.vector, normal), 1), -1);
@@ -98,6 +98,11 @@ function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
 
         return Vector.add(refractionColor, reflectionColor);
     } else { //normal object
+        /* texture mapping
+         * get obj color based on intersection point
+         * set objColor = color
+         */
+
         var objColor= scene.mats[object.mat].color,
               c = Vector.ZERO,
               specReflect = Vector.ZERO,

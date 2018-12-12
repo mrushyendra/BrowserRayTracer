@@ -33,8 +33,28 @@ function handleFileSelect(evt){
   }
 
   var fileReader = new FileReader();
-  fileReader.onload = function(e){scene = parseSceneDescr(e.target.result);}
+  fileReader.onload = function(e){scene = loadScene(e.target.result);}
   fileReader.readAsText(files[0]);
+}
+
+function loadScene(sceneRaw){
+    var scene = parseSceneDescr(sceneRaw);
+
+    //add the required transformation matrices and their inverses
+    for(var i = 0; i < scene.objects.length; ++i){
+        if((scene.objects[i].type == "cone") || (scene.objects[i].type == "cylinder")){
+            scene.objects[i].R = math.matrix([[Math.cos(scene.objects[i].rz), -Math.sin(scene.objects[i].rz), 0, 0], [Math.sin(scene.objects[i].rz), Math.cos(scene.objects[i].rz), 0, 0], [0,0,1,0], [0,0,0,1]]);
+            //TInv - Inverse translation matrix, RInv - Inverse rotation matrix, SInv - Inverse scaling matrix
+            scene.objects[i].TInv = math.matrix([[1,0,0,-scene.objects[i].Tx], [0,1,0,-scene.objects[i].Ty], [0,0,1, -scene.objects[i].Tz], [0,0,0,1]]);
+            scene.objects[i].RInv = math.matrix([[Math.cos(-scene.objects[i].rz), -Math.sin(-scene.objects[i].rz), 0, 0], [Math.sin(-scene.objects[i].rz), Math.cos(-scene.objects[i].rz), 0, 0], [0,0,1,0], [0,0,0,1]]);
+            scene.objects[i].SInv = math.matrix([[1/scene.objects[i].sx, 0, 0, 0], [0, 1/scene.objects[i].sy, 0, 0], [0,0,1/scene.objects[i].sz, 0], [0,0,0,1]]);
+            //precompute S^-1 * R^-1 * T^-1 and S^-1 & R^-1
+            scene.objects[i].SRTInv = math.multiply(scene.objects[i].SInv, math.multiply(scene.objects[i].RInv, scene.objects[i].TInv));
+            scene.objects[i].SRInv = math.multiply(scene.objects[i].SInv, scene.objects[i].RInv);
+        }
+    }
+
+    return scene;
 }
 
 function parseSceneDescr(sceneRaw){

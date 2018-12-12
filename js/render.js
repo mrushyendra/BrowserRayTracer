@@ -6,15 +6,6 @@ function render(scene) {
         objects = scene.objects,
         lights = scene.lights;
 
-    for(var i = 0; i < objects.length; ++i){
-        if(objects[i].type == "cone"){
-            objects[i].TInv = math.matrix([[1,0,0,-objects[i].Tx], [0,1,0,-objects[i].Ty], [0,0,1, -objects[i].Tz], [0,0,0,1]]);
-            objects[i].RInv = math.matrix([[Math.cos(-objects[i].rz), -Math.sin(-objects[i].rz), 0, 0], [Math.sin(-objects[i].rz), Math.cos(-objects[i].rz), 0, 0], [0,0,1,0], [0,0,0,1]]);
-            objects[i].R = math.matrix([[Math.cos(objects[i].rz), -Math.sin(objects[i].rz), 0, 0], [Math.sin(objects[i].rz), Math.cos(objects[i].rz), 0, 0], [0,0,1,0], [0,0,0,1]]);
-            objects[i].SInv = math.matrix([[1/objects[i].sx, 0, 0, 0], [0, 1/objects[i].sy, 0, 0], [0,0,1/objects[i].sz, 0], [0,0,0,1]]);
-        }
-    }
-    
     var octree = new Octree(new Point(0,0,0), {x: width, y: height, z: 500});
     octree.insertObjects(objects);
     var img = [ ];
