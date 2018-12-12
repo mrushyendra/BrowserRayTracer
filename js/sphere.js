@@ -44,3 +44,19 @@ function sphereNormal(sphere, pos) {
         Vector.subtract(pos, sphere.point));
 }
 
+function sphereColor(scene, sphere, point){
+    var center2Pt = Vector.subtract(point, sphere.point);
+    var phi = Math.acos(center2Pt.z/sphere.radius);
+    var theta = Math.atan(center2Pt.y/center2Pt.x);
+    if(theta < 0){
+        theta=-theta;
+    }
+    var u = Math.round((phi/Math.PI)*scene.textures[0].width); //scale to [0-imgWidth]
+    var v = Math.round((theta/(2*Math.PI))*scene.textures[0].height);
+    var objColor = {};
+    objColor.x = scene.textures[sphere.texture].data.data[(scene.textures[0].width*v*4) + (u*4)];
+    objColor.y = scene.textures[sphere.texture].data.data[(scene.textures[0].width*v*4) + (u*4) + 1];
+    objColor.z = scene.textures[sphere.texture].data.data[(scene.textures[0].width*v*4) + (u*4) + 2];
+    return objColor;
+}
+

@@ -98,20 +98,29 @@ function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
 
         return Vector.add(refractionColor, reflectionColor);
     } else { //normal object
-        /* texture mapping
-         * get obj color based on intersection point
-         * set objColor = color
-         */
-
-        var objColor= scene.mats[object.mat].color,
-              c = Vector.ZERO,
-              specReflect = Vector.ZERO,
-              lambertAmount = Vector.ZERO;
+        var objColor = {};
+        if(object.enableTextureMap){
+            if ((object.type == 'sphere') || (object.type == 'spherelong') || (object.type == 'spheretex')){
+                objColor = sphereColor(scene, object, pointAtTime);
+            } else if (object.type == 'triangle'){
+                objColor = triangleColor(scene, object, pointAtTime);
+            } else if (object.type == 'cuboid'){
+                objColor = cuboidColor(scene, object, pointAtTime);
+            } else if (object.type == 'cone'){
+                objColor = coneColor(scene, object, pointAtTime);
+            } else if (object.type == 'cylinder'){
+                objColor = cylinderColor(scene, object, pointAtTime);
+            }
+        } else {
+            objColor= scene.mats[object.mat].color;
+        }
+        var c = Vector.ZERO;
+        var specReflect = Vector.ZERO;
+        var lambertAmount = Vector.ZERO;
 
         // **[Lambert shading](http://en.wikipedia.org/wiki/Lambertian_reflectance)**
         // is our pretty shading, which shows gradations from the most lit point on
         // the object to the least.
-       
 
         if (scene.mats[object.mat].lambert) {
             for (var i = 0; i < scene.lights.length; i++) {
@@ -138,10 +147,7 @@ function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
         lambertAmount = Vector.scale (lambertAmount, scene.mats[object.mat].lambert);
         lambertAmount = Vector.scale(lambertAmount, 1./255.);
 
-        
-     //   if (object.specular) {
-          if (scene.mats[object.mat].specular){
-             
+        if (scene.mats[object.mat].specular){
             // This is basically the same thing as what we did in `render()`, just
             // instead of looking from the viewpoint of the camera, we're looking
             // from a point on the surface of a shiny object, seeing what it sees
@@ -157,12 +163,10 @@ function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
             }
         }
 
-
         // **Ambient** colors shine bright regardless of whether there's a light visible -
         // a circle with a totally ambient blue color will always just be a flat blue
         // circle.
         return Vector.add3(c,
-          //  Vector.scale(b, lambertAmount * object.lambert),
             lambertAmount,
             Vector.scale(objColor, scene.mats[object.mat].ambient));
     }

@@ -1,0 +1,160 @@
+{
+	"camera" : {
+		"point": {
+			"x": 50,
+			"y": 50,
+			"z": 400
+		},
+		"fieldOfView": 40,
+		"toPoint": {
+			"x": 50,
+			"y": 50,
+			"z": 0
+		},
+		"up": {
+			"x": 0,
+			"y": 1,
+			"z": 0
+		}
+	},
+	"lights" : [
+		{
+			"type": "omni",
+			"point": {
+				"x": 50,
+				"y": 95,
+				"z": 50
+			},
+			"color": {
+				"x": 100,
+				"y": 255,
+				"z": 50
+			}
+		},
+		{
+			"type": "omni",
+			"point": {
+				"x": 5,
+				"y": 95,
+				"z": 100
+			},
+			"color": {
+				"x": 255,
+				"y": 120,
+				"z": 100
+			}
+		}, 
+		{
+			"type": "omni",
+			"point": {
+				"x": 95,
+				"y": 5,
+				"z": 100
+			},
+			"color": {
+				"x": 50,
+				"y": 50,
+				"z": 200
+			}
+		}
+	],
+	"objects" : [
+		{
+			"type": "cone",
+			"apex": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "theta" : 30,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 100,
+            "Tx" : 20,
+            "Ty" : 0,
+            "Tz" : 0,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 0.5,
+            "sx" : 0.8,
+            "sy" : 0.4,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -100,
+              "y" : -100,
+              "z" : -100
+            },
+            "boundingBoxDim" : {
+              "x" : 200,
+              "y" : 200,
+              "z" : 200
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5
+		}
+	],
+	"mats" : [
+		{
+			"type": "orig",
+			"color": {
+			       "x": 255,
+			       "y": 255,
+			       "z": 255
+				},
+			"specular": 0.9,
+			"lambert": 0.0,
+			"ambient": 0.00
+		},
+		{
+			"type": "orig",
+			"color": {
+			       "x": 255,
+			       "y": 255,
+			       "z": 255
+				},
+		       "specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.05
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 255,
+				"y": 90,
+				"z": 90
+				},
+			"specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.1
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 90,
+				"y": 90,
+				"z": 255
+				},
+			"specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.0
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 255,
+				"y": 255,
+				"z": 255
+				},
+			"specular": 0.9,
+			"lambert": 0.05,
+			"ambient": 0.05
+		}
+	]
+}
+
+
