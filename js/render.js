@@ -46,6 +46,19 @@ function render(scene) {
     var ray = {
         point: camera.point
     };
+
+    //for(var frame = 0; frame < N; ++frame){
+
+    var gif = new GIF({debug : true, workers : 2, quality : 10});
+    gif.on('finished', function(blob) {
+        console.log('finished');
+        console.log(blob);
+        window.open(URL.createObjectURL(blob));
+    });    
+    gif.on('progress', function(p) {
+        console.log(p);
+    });
+    
     for (var x = 0; x < width; x++) {
         for (var y = 0; y < height; y++) {
           // turn the raw pixel `x` and `y` values into values from -1 to 1
@@ -94,6 +107,20 @@ function render(scene) {
     } 
 
     ctx.putImageData(data, 0, 0);
+    
+    /*
+    gif.addFrame(c, {delay: 200});
+    gif.render();
+    */
+   
+    /*
+    var link = document.getElementById('downloadLink');
+    link.setAttribute('download', 'renderImg.png');
+    link.setAttribute('href', c.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+    link.click();
+    */
+
+    //}
 }
 
 

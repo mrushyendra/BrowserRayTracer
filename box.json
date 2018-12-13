@@ -62,16 +62,25 @@
 		 {
 			"type": "cuboid",
 			"pos": {
-			    "x": 30,
+			    "x": 0,
 			    "y": 0,
-			    "z": 24
+			    "z": 0 
 			},
             "dim": {
                 "x" : 50,
                 "y" : 50,
                 "z" : 50
             },
-			"mat": 0,
+			"mat": 1,
+            "Tx" : 30,
+            "Ty" : 0,
+            "Tz" : 24,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
           "boundingBoxPos" : {
             "x" : 30,
             "y" : 0,
@@ -83,7 +92,9 @@
             "z" : 53
           },
           "isTransparent" : false,
-          "refracIdx" : 1.5
+          "refracIdx" : 1.5,
+          "enableTextureMap" : false,
+          "texture" : 0
 		},
 		{
 			"type": "spherelong",
@@ -448,7 +459,12 @@
 			"lambert": 0.05,
 			"ambient": 0.05
 		}
-	]
+	],
+    "textures" : [
+        {
+            "url" : "textures/marble.jpg"
+        }
+    ]
 }
 
 

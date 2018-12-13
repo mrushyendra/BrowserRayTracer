@@ -34,4 +34,6 @@ if (object.type == 'cone') return (coneNormal(object, point));
 
 if (object.type == 'cylinder') return (cylinderNormal(object, point));
 
+if (object.type == 'plane') return (planeNormal(object, point));
+
 }

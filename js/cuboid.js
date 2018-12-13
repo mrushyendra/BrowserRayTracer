@@ -1,17 +1,35 @@
 // ## Detecting collisions against a cuboid
 
 function cuboidIntersection(cuboid, ray) {
+    /* Assume precomputed: 
+    calc TInv matrix from Tx, Ty, Tz
+    calc RInv matrix from rx, ry, rz
+    calc SInv matrix from sx, sy, sz
+    */    
+
+    //transform ray into object space
+    var rayPtArr = [ray.point.x, ray.point.y, ray.point.z, 1];
+    rayPtArr = math.multiply(cuboid.SRTInv, rayPtArr);
+    var rayVecArr = [ray.vector.x, ray.vector.y, ray.vector.z, 0];
+    rayVecArr = math.multiply(cuboid.SRInv, rayVecArr);
+
+    rayPtArr = rayPtArr.valueOf(); //get array representation back
+    rayVecArr = rayVecArr.valueOf();
+    var rayNew = {};
+    rayNew.point = {x: rayPtArr[0], y: rayPtArr[1], z: rayPtArr[2]};
+    rayNew.vector = {x: rayVecArr[0], y: rayVecArr[1], z: rayVecArr[2]};
+
     //r + td = x, (x-r)/d = t
-    var txMin = (cuboid.pos.x - ray.point.x)/ray.vector.x;
-    var txMax = (cuboid.pos.x + cuboid.dim.x - ray.point.x)/ray.vector.x;
+    var txMin = (cuboid.pos.x - rayNew.point.x)/rayNew.vector.x;
+    var txMax = (cuboid.pos.x + cuboid.dim.x - rayNew.point.x)/rayNew.vector.x;
     if(txMin > txMax){
       var tmp = txMin;
       txMin = txMax;
       txMax = tmp;
     }
 
-    var tyMin = (cuboid.pos.y - ray.point.y)/ray.vector.y;
-    var tyMax = (cuboid.pos.y + cuboid.dim.y - ray.point.y)/ray.vector.y;
+    var tyMin = (cuboid.pos.y - rayNew.point.y)/rayNew.vector.y;
+    var tyMax = (cuboid.pos.y + cuboid.dim.y - rayNew.point.y)/rayNew.vector.y;
     if(tyMin > tyMax){
       var tmp = tyMin;
       tyMin = tyMax;
@@ -30,8 +48,8 @@ function cuboidIntersection(cuboid, ray) {
       txMax = tyMax;
     }
 
-    var tzMin = (cuboid.pos.z - ray.point.z)/ray.vector.z;
-    var tzMax = (cuboid.pos.z + cuboid.dim.z - ray.point.z)/ray.vector.z;
+    var tzMin = (cuboid.pos.z - rayNew.point.z)/rayNew.vector.z;
+    var tzMax = (cuboid.pos.z + cuboid.dim.z - rayNew.point.z)/rayNew.vector.z;
     if(tzMin > tzMax){
       var tmp = tzMin;
       tzMin = tzMax;
@@ -62,33 +80,34 @@ function cuboidIntersection(cuboid, ray) {
 }
 
 function cuboidNormal(cuboid, pos){
-    var center = Vector.add(cuboid.pos, Vector.scale(cuboid.dim, 2));
-    var center2Pos = Vector.subtract(pos, center);
+    //convert intersection pt to obj space
+    var intersectionPtArr = [pos.x, pos.y, pos.z, 1]; 
+    intersectionPtArr = math.multiply(cuboid.SRTInv, intersectionPtArr);
+    intersectionPtArr = intersectionPtArr.valueOf();
+    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space
 
-    var xDistance = Math.abs(cuboid.dim.x - Math.abs(center2Pos.x));
-    var min = Infinity;
-    if(xDistance < min){
-        min = xDistance;
-        normal = {x: 1, y: 0, z: 0};
-        if(center2Pos.x < 0)
-            Vector.scale(normal, -1);
+    var normalObjSpace = {x:0, y:0, z:0};
+    var eps = 0.1;
+    if(Math.abs(intersectionPtnew.x - cuboid.pos.x) < eps){
+        normaObjSpace = {x : -1, y : 0, z : 0};
+    } else if(Math.abs(intersectionPtnew.y - cuboid.pos.y) < eps){
+        normalObjSpace = {x : 0, y : -1, z : 0};
+    } else if(Math.abs(intersectionPtnew.z - cuboid.pos.z) < eps){
+        normalObjSpace = {x : 0, y : 0, z : -1};
+    } else if(Math.abs(intersectionPtnew.x - (cuboid.pos.x + cuboid.dim.x)) < eps){
+        normalObjSpace = {x : 1, y : 0, z : 0};
+    } else if(Math.abs(intersectionPtnew.y - (cuboid.pos.y + cuboid.dim.y)) < eps){
+        normalObjSpace = {x : 0, y : 1, z : 0};
+    } else if(Math.abs(intersectionPtnew.z - (cuboid.pos.z + cuboid.dim.z)) < eps){
+        normalObjSpace = {x : 0, y : 0, z : 1};
     }
 
-    var yDistance = Math.abs(cuboid.dim.y - Math.abs(center2Pos.y));
-    if(yDistance < min){
-        min = yDistance;
-        normal = {x: 0, y: 1, z: 0};
-        if(center2Pos.y < 0)
-            Vector.scale(normal, -1);
-    }
+    //convert to world space
+    var normalArr = [normalObjSpace.x, normalObjSpace.y, normalObjSpace.z, 0];
+    normalArr = math.multiply(cuboid.R, math.multiply(cuboid.SInv, normalArr));
+    normalArr = normalArr.valueOf();
+    var normal = {x: normalArr[0], y: normalArr[1], z: normalArr[2]};
 
-    var zDistance = Math.abs(cuboid.dim.z - Math.abs(center2Pos.z));
-    if(zDistance < min){
-        min = zDistance;
-        normal = {x: 0, y: 0, z: 1};
-        if(center2Pos.z < 0)
-            Vector.scale(normal, -1);
-    }
-    return normal;
+    return Vector.unitVector(normal);
 }
 

@@ -42,7 +42,8 @@ function loadScene(sceneRaw){
 
     //add the required transformation matrices and their inverses
     for(var i = 0; i < scene.objects.length; ++i){
-        if((scene.objects[i].type == "cone") || (scene.objects[i].type == "cylinder")){
+        if((scene.objects[i].type == "cone") || (scene.objects[i].type == "cylinder") || (scene.objects[i].type == "cuboid") ||
+        (scene.objects[i].type == "plane")){
             scene.objects[i].R = math.matrix([[Math.cos(scene.objects[i].rz), -Math.sin(scene.objects[i].rz), 0, 0], 
                     [Math.sin(scene.objects[i].rz), Math.cos(scene.objects[i].rz), 0, 0], [0,0,1,0], [0,0,0,1]]);
             //TInv - Inverse translation matrix, RInv - Inverse rotation matrix, SInv - Inverse scaling matrix
