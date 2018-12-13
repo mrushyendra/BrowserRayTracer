@@ -60,46 +60,38 @@
 	],
 	"objects" : [
 		{
-			"type": "cone",
-			"apex": {
-			    "x": 0,
-			    "y": 0,
-			    "z": 0
+			"type": "triangle",
+			"point1": {
+			"x": 100, "y": 0, "z": 0
 			},
-            "axis": {
-                "x" : 0,
-                "y" : 1,
-                "z" : 0
-            },
-            "theta" : 45,
+			"point2": {
+			"x": 100, "y": 100, "z": 0
+			},
+			"point3": {
+			"x": 0, "y": 100, "z": 0
+			},
 			"mat": 1,
-            "yMin" : 0,
-            "yMax" : 100,
-            "Tx" : 0,
-            "Ty" : 0,
-            "Tz" : 0,
-            "rx" : 10,
-            "ry" : 0,
-            "rz" : 20,
-            "sx" : 1,
-            "sy" : 1,
-            "sz" : 1,
-            "boundingBoxPos" : {
-              "x" : -100,
-              "y" : -100,
-              "z" : -100
-            },
-            "boundingBoxDim" : {
-              "x" : 200,
-              "y" : 200,
-              "z" : 200
-            },
-            "isTransparent" : false,
-            "refracIdx" : 1.5,
-            "enableTextureMap" : false,
-            "texture" : 0
-		}
-	],
+          "boundingBoxPos" : {
+            "x" : -1,
+            "y" : -1,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 102,
+            "y" : 102,
+            "z" : 2
+          },		
+          "isTransparent" : false,
+          "refracIdx" : 1.5,
+          "enableTextureMap" : true,
+          "texture" : 0,
+          "textureMapCoords" : [
+              {"u" : 10, "v" : 20},
+              {"u" : 50, "v" : 70},
+              {"u" : 90, "v" : 120}
+          ]
+		}	
+    ],
 	"mats" : [
 		{
 			"type": "orig",

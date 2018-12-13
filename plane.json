@@ -64,8 +64,6 @@
             "height" : 100,
             "width" : 50,
 			"mat": 1,
-            "yMin" : 0,
-            "yMax" : 100,
             "Tx" : 0,
             "Ty" : 0,
             "Tz" : 0,
@@ -87,7 +85,7 @@
             },
             "isTransparent" : false,
             "refracIdx" : 1.5,
-            "enableTextureMap" : false,
+            "enableTextureMap" : true,
             "texture" : 0
 		}
 	],

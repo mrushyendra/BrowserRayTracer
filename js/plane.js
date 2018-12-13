@@ -48,3 +48,23 @@ function planeNormal(plane, pos){
 
     return Vector.unitVector(normal);
 }
+
+function planeColor(scene, plane, point){
+    //convert intersection pt to obj space
+    var intersectionPtArr = [point.x, point.y, point.z, 1]; 
+    intersectionPtArr = math.multiply(plane.SRTInv, intersectionPtArr);
+    intersectionPtArr = intersectionPtArr.valueOf();
+    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space   
+
+    //the plane primitive is the xy-plane, so transform x,y coords to u,v coords in image
+    //calculate cylindrical coordinates, then transform to u,v coords
+    var u = Math.abs(intersectionPtnew.x);
+    var v = Math.abs(intersectionPtnew.y);
+    u = Math.round((u/plane.width)*scene.textures[plane.texture].width); //scale to [0-imgWidth]
+    v = Math.round((v/plane.height)*scene.textures[plane.texture].height);
+    var objColor = {};
+    objColor.x = scene.textures[plane.texture].data.data[(scene.textures[plane.texture].width*v*4) + (u*4)];
+    objColor.y = scene.textures[plane.texture].data.data[(scene.textures[plane.texture].width*v*4) + (u*4) + 1];
+    objColor.z = scene.textures[plane.texture].data.data[(scene.textures[plane.texture].width*v*4) + (u*4) + 2];
+    return objColor;
+}

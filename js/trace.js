@@ -6,7 +6,7 @@ function trace(ray, scene, octree, depth) {
     // to find what the ray reflected into. Since this could easily go
     // on forever, first check that we haven't gone more than three bounces
     // into a reflection.
-    if (depth > 7) return Vector.ZEROcp;
+    if (depth > 3) return Vector.ZEROcp;
 
     var distObject = intersectScene(ray, octree, scene);
 

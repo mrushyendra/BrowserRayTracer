@@ -110,6 +110,8 @@ function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
                 objColor = coneColor(scene, object, pointAtTime);
             } else if (object.type == 'cylinder'){
                 objColor = cylinderColor(scene, object, pointAtTime);
+            } else if(object.type == 'plane'){
+                objColor = planeColor(scene, object, pointAtTime);
             }
         } else {
             objColor= scene.mats[object.mat].color;
