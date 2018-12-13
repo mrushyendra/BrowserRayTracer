@@ -97,3 +97,15 @@ function coneColor(scene, cone, point, intersectPtObjSpace){
     objColor.z = scene.textures[cone.texture].data.data[(scene.textures[cone.texture].width*v*4) + (u*4) + 2];
     return objColor;
 }
+
+function updateCone(cone, timeStep){
+    var vx = cone.Vx;
+    var vy = cone.Vy;
+    var vz = cone.Vz;
+    cone.Tx+=(vx*timeStep);
+    cone.boundingBoxPos.x+=(vx*timeStep);
+    cone.Ty+=(vy*timeStep);
+    cone.boundingBoxPos.y+=(vy*timeStep);
+    cone.Tz+=(vz*timeStep);
+    cone.boundingBoxPos.z+=(vz*timeStep);
+}

@@ -64,3 +64,15 @@ function planeColor(scene, plane, point, intersectPtObjSpace){
     objColor.z = scene.textures[plane.texture].data.data[(scene.textures[plane.texture].width*v*4) + (u*4) + 2];
     return objColor;
 }
+
+function updatePlane(plane, timeStep){
+    var vx = plane.Vx;
+    var vy = plane.Vy;
+    var vz = plane.Vz;
+    plane.Tx+=(vx*timeStep);
+    plane.boundingBoxPos.x+=(vx*timeStep);
+    plane.Ty+=(vy*timeStep);
+    plane.boundingBoxPos.y+=(vy*timeStep);
+    plane.Tz+=(vz*timeStep);
+    plane.boundingBoxPos.z+=(vz*timeStep);
+}

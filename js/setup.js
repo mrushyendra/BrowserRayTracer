@@ -84,6 +84,17 @@ function loadScene(sceneRaw){
         }
     }
 
+    scene.updatePosFns = {
+        "sphere" : updateSphere,
+        "triangle" : updateTri,
+        "plane" : updatePlane,
+        "cuboid" : updateCuboid,
+        "cone" : updateCone,
+        "spheretex" : updateSphere,
+        "spherelong" : updateSphere,
+        "cylinder" : updateCylinder
+    };
+
     return scene;
 }
 

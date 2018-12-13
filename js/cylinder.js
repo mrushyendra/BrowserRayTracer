@@ -93,3 +93,15 @@ function cylinderColor(scene, cylinder, point, intersectPtObjSpace){
     objColor.z = scene.textures[cylinder.texture].data.data[(scene.textures[cylinder.texture].width*v*4) + (u*4) + 2];
     return objColor;
 }
+
+function updateCylinder(cylinder, timeStep){
+    var vx = cylinder.Vx;
+    var vy = cylinder.Vy;
+    var vz = cylinder.Vz;
+    cylinder.Tx+=(vx*timeStep);
+    cylinder.boundingBoxPos.x+=(vx*timeStep);
+    cylinder.Ty+=(vy*timeStep);
+    cylinder.boundingBoxPos.y+=(vy*timeStep);
+    cylinder.Tz+=(vz*timeStep);
+    cylinder.boundingBoxPos.z+=(vz*timeStep);
+}

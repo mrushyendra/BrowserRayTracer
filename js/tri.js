@@ -74,3 +74,20 @@ function triangleColor(scene, tri, point){
     return objColor;
 }
 
+function updateTri(tri, timeStep){
+    var vx = tri.Vx;
+    var vy = tri.Vy;
+    var vz = tri.Vz;
+    tri.point1.x+=(vx*timeStep);
+    tri.point2.x+=(vx*timeStep);
+    tri.point3.x+=(vx*timeStep);
+    tri.boundingBoxPos.x+=(vx*timeStep);
+    tri.point1.y+=(vy*timeStep);
+    tri.point2.y+=(vy*timeStep);
+    tri.point3.y+=(vy*timeStep);
+    tri.boundingBoxPos.y+=(vy*timeStep);
+    tri.point1.z+=(vz*timeStep);
+    tri.point2.z+=(vz*timeStep);
+    tri.point3.z+=(vz*timeStep);
+    tri.boundingBoxPos.z+=(vz*timeStep);
+}

@@ -46,6 +46,7 @@ function render(scene) {
     };
 
     var N = parseInt(document.getElementById('N').value);
+    var timeStep = 20;
     if(N < 1 || N > 20){
         console.log("Too few/many frames to save"); //debug
         N = 1; //default
@@ -103,9 +104,26 @@ function render(scene) {
         ctx.putImageData(data, 0, 0);
         //save as image
         frames.push(c.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+
+        
+        scene = updateScene(scene, timeStep);
+        objects = scene.objects;
+        octree = new Octree(new Point(0,0,0), {x: width, y: height, z: 500});
+        octree.insertObjects(objects);    
+        
     }
 
     //make download button available once all frames have been created
     document.getElementById('downloadBtn').style.display = "block";
+}
+
+function updateScene(scene, timeStep){
+    for(var i = 0; i < scene.objects.length; ++i){
+        scene.updatePosFns[scene.objects[i].type](scene.objects[i], timeStep);
+        if(scene.objects[i].type == "sphere"){
+            console.log(scene.objects[i].point);
+        }
+    }
+    return scene;
 }
 

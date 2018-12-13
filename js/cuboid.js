@@ -109,3 +109,15 @@ function cuboidNormal(cuboid, pos, intersectPtObjSpace){
     return Vector.unitVector(normal);
 }
 
+function updateCuboid(cuboid, timeStep){
+    var vx = cuboid.Vx;
+    var vy = cuboid.Vy;
+    var vz = cuboid.Vz;
+    cuboid.point.x+=(vx*timeStep);
+    cuboid.boundingBoxPos.x+=(vx*timeStep);
+    cuboid.point.y+=(vy*timeStep);
+    cuboid.boundingBoxPos.y+=(vy*timeStep);
+    cuboid.point.z+=(vz*timeStep);
+    cuboid.boundingBoxPos.z+=(vz*timeStep);
+}
+

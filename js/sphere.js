@@ -61,3 +61,14 @@ function sphereColor(scene, sphere, point){
     return objColor;
 }
 
+function updateSphere(sphere, timeStep){
+    var vx = sphere.Vx;
+    var vy = sphere.Vy;
+    var vz = sphere.Vz;
+    sphere.point.x+=(vx*timeStep);
+    sphere.boundingBoxPos.x+=(vx*timeStep);
+    sphere.point.y+=(vy*timeStep);
+    sphere.boundingBoxPos.y+=(vy*timeStep);
+    sphere.point.z+=(vz*timeStep);
+    sphere.boundingBoxPos.z+=(vz*timeStep);
+}
