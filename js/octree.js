@@ -99,7 +99,7 @@ function Octree(boundingBoxPos, boundingBoxDim){
   //check if ray intersects any object in octree, return [distance, object] array if it does. Else
   //return [inf, null]
   this.intersectOctree = function(ray){ //ray = p + td; where d is the direction
-    var intersection = [Infinity, null];
+    var intersection = [Infinity, null, null];
     //check intersection with each object in current octree's object list
     for(var i = 0; i < this.objects.length; ++i){
       //intersect with bounding box first
@@ -107,9 +107,10 @@ function Octree(boundingBoxPos, boundingBoxDim){
       //check if current intersection is nearer than previous intersection
       if(boxIntersection[0] && boxIntersection[1] < intersection[0]){         
         var shapeIntersectFn = this.intersectionFns[this.objects[i].type];
-        var shapeIntersection = shapeIntersectFn(this.objects[i], ray); //returns distance of intersection pt w/ shape from camera
+        var shapeIntersection = shapeIntersectFn(this.objects[i], ray); //returns array of [distance, intersectPtObjSpace] of intersection pt w/ shape
         if(shapeIntersection){
-          intersection = [shapeIntersection, this.objects[i]];
+          shapeIntersection.push(this.objects[i]);
+          intersection = shapeIntersection; //return array of [distance, normal, object]
         }
       }
     }

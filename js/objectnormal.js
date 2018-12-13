@@ -1,7 +1,7 @@
 // for Assign 5
 // Compute normal of object
 
-function objectNormal(object, point){
+function objectNormal(object, point, intersectPtObjSpace){
 
 if (object.type == 'sphere') return (sphereNormal (object, point));
 
@@ -28,12 +28,12 @@ if (object.type == 'spherelong'){
 
 if (object.type == 'triangle') return (triNormal(object));
 
-if (object.type == 'cuboid') return (cuboidNormal(object, point));
+if (object.type == 'cuboid') return (cuboidNormal(object, point, intersectPtObjSpace));
 
-if (object.type == 'cone') return (coneNormal(object, point));
+if (object.type == 'cone') return (coneNormal(object, point, intersectPtObjSpace));
 
-if (object.type == 'cylinder') return (cylinderNormal(object, point));
+if (object.type == 'cylinder') return (cylinderNormal(object, point, intersectPtObjSpace));
 
-if (object.type == 'plane') return (planeNormal(object, point));
+if (object.type == 'plane') return (planeNormal(object, point, intersectPtObjSpace));
 
 }

@@ -444,7 +444,12 @@
 			"lambert": 0.05,
 			"ambient": 0.05
 		}
-	]
+	],
+    "textures" : [
+        {
+            "url" : "textures/marble.jpg"
+        }
+    ]
 }
 
 

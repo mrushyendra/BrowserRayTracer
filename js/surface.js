@@ -71,9 +71,7 @@ function calcRefractedRay(ray, normal, intersectionPt, refracIdx){
 // # Surface
 // If `trace()` determines that a ray intersected with an object, `surface`
 // decides what color it acquires from the interaction.
-
-function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
-
+function surface(ray, scene, octree, object, pointAtTime, intersectPtObjSpace, normal, depth) {
     if(object.isTransparent){
         var refractionColor = new Point(0,0,0);
         var reflectionColor = new Point(0,0,0);
@@ -90,28 +88,28 @@ function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
             point: pointAtTime,
             vector: Vector.reflectThrough(Vector.scale(ray.vector, -1), normal)
         };
-
         reflectionColor = trace(reflectedRay, scene, octree, ++depth);
             
         refractionColor = Vector.scale(refractionColor, fracRefracted);
         reflectionColor = Vector.scale(reflectionColor, fracReflected);
 
         return Vector.add(refractionColor, reflectionColor);
+
     } else { //normal object
         var objColor = {};
         if(object.enableTextureMap){
             if ((object.type == 'sphere') || (object.type == 'spherelong') || (object.type == 'spheretex')){
-                objColor = sphereColor(scene, object, pointAtTime);
+                objColor = sphereColor(scene, object, pointAtTime, intersectPtObjSpace);
             } else if (object.type == 'triangle'){
-                objColor = triangleColor(scene, object, pointAtTime);
+                objColor = triangleColor(scene, object, pointAtTime, intersectPtObjSpace);
             } else if (object.type == 'cuboid'){
-                objColor = cuboidColor(scene, object, pointAtTime);
+                objColor = cuboidColor(scene, object, pointAtTime, intersectPtObjSpace);
             } else if (object.type == 'cone'){
-                objColor = coneColor(scene, object, pointAtTime);
+                objColor = coneColor(scene, object, pointAtTime, intersectPtObjSpace);
             } else if (object.type == 'cylinder'){
-                objColor = cylinderColor(scene, object, pointAtTime);
+                objColor = cylinderColor(scene, object, pointAtTime, intersectPtObjSpace);
             } else if(object.type == 'plane'){
-                objColor = planeColor(scene, object, pointAtTime);
+                objColor = planeColor(scene, object, pointAtTime, intersectPtObjSpace);
             }
         } else {
             objColor= scene.mats[object.mat].color;
@@ -158,6 +156,19 @@ function surface(ray, scene, octree, object, pointAtTime, normal, depth) {
                 point: pointAtTime,
                 vector: Vector.reflectThrough(Vector.scale(ray.vector, -1), normal)
             };
+
+            //perturb reflected ray slightly for glossy reflection
+            if(object.isGlossy){
+                var vecU = Vector.crossProduct(reflectedRay.vector, normal);
+                var vecV = Vector.crossProduct(reflectedRay.vector, vecU);
+                var a = Math.random();
+                var b = Math.random();
+                var theta = Math.acos(1-a);
+                var phi = 2 * Math.PI * b;
+                a = Math.sin(phi) * Math.cos(theta)/16;
+                b = Math.sin(phi) * Math.sin(theta)/16;
+                reflectedRay.vector = Vector.unitVector(Vector.add3(reflectedRay.vector, Vector.scale(vecU, a), Vector.scale(vecV, b)));
+            }
 
             var reflectedColor = trace(reflectedRay, scene, octree, ++depth);
             if (reflectedColor) {  

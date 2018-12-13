@@ -55,16 +55,13 @@ function coneIntersection(cone, ray) {
     if((intersectionPt.y < cone.yMin) || (intersectionPt.y > cone.yMax)){
         return; //outside the finite cone
     }
-    
-    return Vector.length(Vector.scale(ray.vector, t)); //actual intersection point = ray.point + ray.vector*t
+
+    return [Vector.length(Vector.scale(ray.vector, t)), intersectionPt]; //actual intersection point = ray.point + ray.vector*t
 }
 
-function coneNormal(cone, pos) {
-    //convert intersection pt to obj space
-    var intersectionPtArr = [pos.x, pos.y, pos.z, 1]; 
-    intersectionPtArr = math.multiply(cone.SRTInv, intersectionPtArr);
-    intersectionPtArr = intersectionPtArr.valueOf();
-    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space
+//Not used: calculated in coneIntersect instead
+function coneNormal(cone, pos, intersectPtObjSpace) {
+    var intersectionPtnew = intersectPtObjSpace;
 
     //calculate normal in object space
     //basic trigonometry to calculate length of hypotenuse, then calculate normal in object space by joining end of hyp with intersection pt
@@ -82,12 +79,8 @@ function coneNormal(cone, pos) {
     return Vector.unitVector(normal);
 }
 
-function coneColor(scene, cone, point){
-    //convert intersection pt to obj space
-    var intersectionPtArr = [point.x, point.y, point.z, 1]; 
-    intersectionPtArr = math.multiply(cone.SRTInv, intersectionPtArr);
-    intersectionPtArr = intersectionPtArr.valueOf();
-    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space   
+function coneColor(scene, cone, point, intersectPtObjSpace){
+    var intersectionPtnew = intersectPtObjSpace;
 
     //similar triangles to calculate r', then calc the angle phi that yields the x and z components of the r'
     //phi = [0,2pi], u = [0-1]

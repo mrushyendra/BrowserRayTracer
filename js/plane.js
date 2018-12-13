@@ -34,10 +34,10 @@ function planeIntersection(plane, ray) {
         return;
     }
 
-    return Vector.length(Vector.scale(ray.vector, t)); //actual intersection point = ray.point + ray.vector*t
+    return [Vector.length(Vector.scale(ray.vector, t)), intersectionPt]; //actual intersection point = ray.point + ray.vector*t
 }
 
-function planeNormal(plane, pos){
+function planeNormal(plane, pos, intersectPtObjSpace){
     var normalObjSpace = {x:0, y:0, z:1};
 
     //convert to world space
@@ -49,12 +49,8 @@ function planeNormal(plane, pos){
     return Vector.unitVector(normal);
 }
 
-function planeColor(scene, plane, point){
-    //convert intersection pt to obj space
-    var intersectionPtArr = [point.x, point.y, point.z, 1]; 
-    intersectionPtArr = math.multiply(plane.SRTInv, intersectionPtArr);
-    intersectionPtArr = intersectionPtArr.valueOf();
-    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space   
+function planeColor(scene, plane, point, intersectPtObjSpace){
+    var intersectionPtnew = intersectPtObjSpace;
 
     //the plane primitive is the xy-plane, so transform x,y coords to u,v coords in image
     //calculate cylindrical coordinates, then transform to u,v coords

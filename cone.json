@@ -74,11 +74,11 @@
             "theta" : 45,
 			"mat": 1,
             "yMin" : 0,
-            "yMax" : 100,
+            "yMax" : 80,
             "Tx" : 0,
             "Ty" : 0,
             "Tz" : 0,
-            "rx" : 10,
+            "rx" : 0,
             "ry" : 0,
             "rz" : 20,
             "sx" : 1,
@@ -96,7 +96,7 @@
             },
             "isTransparent" : false,
             "refracIdx" : 1.5,
-            "enableTextureMap" : false,
+            "enableTextureMap" : true,
             "texture" : 0
 		}
 	],
@@ -159,7 +159,7 @@
 	],
     "textures" : [
         {
-            "url" : "textures/marble.jpg"
+            "url" : "textures/woodGrain.jpg"
         }
     ]
 }

@@ -34,7 +34,7 @@ n1 = Vector.unitVector(Vector.crossProduct(v1,v3));
 d1 = -1* Vector.dotProduct(ray.point,n1);
 if ( (d1 + Vector.dotProduct(P,n1)) < 0) return undefined;
 
-return dist;
+return [dist, null];
 }
 
 // A normal is, at each point on the surface of a sphere or some other object,

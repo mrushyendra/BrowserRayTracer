@@ -56,15 +56,11 @@ function cylinderIntersection(cylinder, ray) {
         return; //outside the finite cylinder
     }
     
-    return Vector.length(Vector.scale(ray.vector, t)); //actual intersection point = ray.point + ray.vector*t
+    return [Vector.length(Vector.scale(ray.vector, t)), intersectionPt]; //actual intersection point = ray.point + ray.vector*t
 }
 
-function cylinderNormal(cylinder, pos) {
-    //convert intersection pt to obj space
-    var intersectionPtArr = [pos.x, pos.y, pos.z, 1]; 
-    intersectionPtArr = math.multiply(cylinder.SRTInv, intersectionPtArr);
-    intersectionPtArr = intersectionPtArr.valueOf();
-    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space
+function cylinderNormal(cylinder, pos, intersectPtObjSpace) {
+    var intersectionPtnew = intersectPtObjSpace;
 
     //calculate normal in object space
     //basic trigonometry to calculate length of hypotenuse, then calculate normal in object space by joining end of hyp with intersection pt
@@ -82,12 +78,8 @@ function cylinderNormal(cylinder, pos) {
     return Vector.unitVector(normal);
 }
 
-function cylinderColor(scene, cylinder, point){
-    //convert intersection pt to obj space
-    var intersectionPtArr = [point.x, point.y, point.z, 1]; 
-    intersectionPtArr = math.multiply(cylinder.SRTInv, intersectionPtArr);
-    intersectionPtArr = intersectionPtArr.valueOf();
-    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space   
+function cylinderColor(scene, cylinder, point, intersectPtObjSpace){
+    var intersectionPtNew = intersectPtObjSpace;
 
     //calculate cylindrical coordinates, then transform to u,v coords
     var u = Math.abs(intersectionPtnew.y);

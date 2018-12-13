@@ -20,6 +20,9 @@ var data = ctx.getImageData(0, 0, width, height);
 // In this file, the original red/blue/white room with overhead white light, and orange and blue corner lights
 var scene = {};
 
+//Array to hold the saved frames
+var frames = [];
+
 //Setup event handler to read file when uploaded
 document.getElementById('sceneDescrUpload').addEventListener('change', handleFileSelect, false);
 
@@ -86,4 +89,14 @@ function loadScene(sceneRaw){
 
 function parseSceneDescr(sceneRaw){
   return JSON.parse(sceneRaw);
+}
+
+function downloadFrames(frames){
+    var link = document.getElementById('downloadLink');
+    for(var frame = 0; frame < frames.length; ++frame){
+        var fileName = 'frame' + (frame+1) + '.png';
+        link.setAttribute('download', fileName);
+        link.setAttribute('href', frames[frame]);
+        link.click();
+    }
 }

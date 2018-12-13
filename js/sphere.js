@@ -31,7 +31,7 @@ function sphereIntersection(sphere, ray) {
         // `Math.sqrt(dotProduct(a, a))` is the length of a vector, so
         // `v - Math.sqrt(discriminant)` means the length of the the vector
         // just from the camera to the intersection point.
-        return v - Math.sqrt(discriminant);
+        return [v - Math.sqrt(discriminant), null];
     }
 }
 

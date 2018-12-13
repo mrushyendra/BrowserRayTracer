@@ -8,13 +8,13 @@
 
    Upload scene description file:
    <input type="file" id="sceneDescrUpload" accept=".json"/><br>
+   Number of frames to save: <input id="N" type="number"> <br>
    
-   <button onclick="render(scene)">Make the picture </button>
-   <canvas id="c" width="800" height="600"></canvas>
-   <a id="downloadLink"></a>
+   <button onclick="render(scene)">Make the picture </button><br>
+   <canvas id="c" width="800" height="600"></canvas><br>
+   <a id="downloadLink" hidden></a>
+   <button id="downloadBtn" onclick="downloadFrames(frames)" style="display:none"> Download Frames </button>
 
-   <script src="js/gif.js"> </script>
-   <script src="js/gif.worker.js"> </script>
    <script src="js/setup.js">	</script><!Initializes canvas and reads in scene description>
    <script src="js/octree.js"> </script><!Creates octree from given list of objects>
    <script src="js/render.js">	</script> <! uses brute force antialiasing, so slow >

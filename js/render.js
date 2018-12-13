@@ -40,87 +40,72 @@ function render(scene) {
         pixelWidth = camerawidth / (width - 1),
         pixelHeight = cameraheight / (height - 1);
 
-   
-
     var index, color;
     var ray = {
         point: camera.point
     };
 
-    //for(var frame = 0; frame < N; ++frame){
-
-    var gif = new GIF({debug : true, workers : 2, quality : 10});
-    gif.on('finished', function(blob) {
-        console.log('finished');
-        console.log(blob);
-        window.open(URL.createObjectURL(blob));
-    });    
-    gif.on('progress', function(p) {
-        console.log(p);
-    });
-    
-    for (var x = 0; x < width; x++) {
-        for (var y = 0; y < height; y++) {
-          // turn the raw pixel `x` and `y` values into values from -1 to 1
-          // and use these values to scale the facing-right and facing-up
-          // vectors so that we generate versions of the `eyeVector` that are
-          // skewed in each necessary direction.
-
-          // For Assign 5, brute-force antialiasing with 9 samples/pixel
-	        color = Vector.ZERO;
-          
-          for (var s = -.4; s < .5; s+=.4) {
-		        for (var r = -.4; r < .5; r +=.4) {
-              var xcomp = Vector.scale(vpRight, ((x+s) * pixelWidth) - halfWidth);
-              var ycomp = Vector.scale(vpUp, ((y+r) * pixelHeight) - halfHeight);
-
-              ray.vector = Vector.unitVector(Vector.add3(eyeVector, xcomp, ycomp));
-
-  	          // use the vector generated to raytrace the scene, returning a color
-              // as a `{x, y, z}` vector of RGB values
-              color = Vector.add(color, trace(ray, scene, octree, 0));
-            } 
-          }
-          
-          color = Vector.scale(color, 0.1111111); 
-          index = (x  * 3) + (y * width*  3);
-          img[index + 0] = color.x;
-          img[index + 1] = color.y;
-          img[index + 2] = color.z;
-
-        }
+    var N = parseInt(document.getElementById('N').value);
+    if(N < 1 || N > 20){
+        console.log("Too few/many frames to save"); //debug
+        N = 1; //default
     }
-    // adjust so fits into 0 to 255
-    img2 = tone_map(img);
 
-    // we computed from the bottom of the image up
-    // image on the canvas has top row written first
-    for(x=0;x<width;x++){
-      for(y=0;y <height;y++){
-        index = (x * 3) + (y* width  * 3);
-        d_index = (x * 4) + ((height-1 -y)* width * 4);
-        data.data[d_index + 0] = img2[index+ 0];
-        data.data[d_index + 1] = img2[index +1];
-        data.data[d_index + 2] = img2[index+2];
-        data.data[d_index + 3] = 255;
-      }
-    } 
+    for(var frame = 0; frame < N; ++frame){
 
-    ctx.putImageData(data, 0, 0);
-    
-    /*
-    gif.addFrame(c, {delay: 200});
-    gif.render();
-    */
-   
-    /*
-    var link = document.getElementById('downloadLink');
-    link.setAttribute('download', 'renderImg.png');
-    link.setAttribute('href', c.toDataURL("image/png").replace("image/png", "image/octet-stream"));
-    link.click();
-    */
+        for (var x = 0; x < width; x++) {
+            for (var y = 0; y < height; y++) {
+              // turn the raw pixel `x` and `y` values into values from -1 to 1
+              // and use these values to scale the facing-right and facing-up
+              // vectors so that we generate versions of the `eyeVector` that are
+              // skewed in each necessary direction.
 
-    //}
+              // For Assign 5, brute-force antialiasing with 9 samples/pixel
+                color = Vector.ZERO;
+              
+              for (var s = -.4; s < .5; s+=.4) {
+                    for (var r = -.4; r < .5; r +=.4) {
+                  var xcomp = Vector.scale(vpRight, ((x+s) * pixelWidth) - halfWidth);
+                  var ycomp = Vector.scale(vpUp, ((y+r) * pixelHeight) - halfHeight);
+
+                  ray.vector = Vector.unitVector(Vector.add3(eyeVector, xcomp, ycomp));
+
+                  // use the vector generated to raytrace the scene, returning a color
+                  // as a `{x, y, z}` vector of RGB values
+                  color = Vector.add(color, trace(ray, scene, octree, 0));
+                } 
+              }
+              
+              color = Vector.scale(color, 0.1111111); 
+              index = (x  * 3) + (y * width*  3);
+              img[index + 0] = color.x;
+              img[index + 1] = color.y;
+              img[index + 2] = color.z;
+
+            }
+        }
+        // adjust so fits into 0 to 255
+        img2 = tone_map(img);
+
+        // we computed from the bottom of the image up
+        // image on the canvas has top row written first
+        for(x=0;x<width;x++){
+          for(y=0;y <height;y++){
+            index = (x * 3) + (y* width  * 3);
+            d_index = (x * 4) + ((height-1 -y)* width * 4);
+            data.data[d_index + 0] = img2[index+ 0];
+            data.data[d_index + 1] = img2[index +1];
+            data.data[d_index + 2] = img2[index+2];
+            data.data[d_index + 3] = 255;
+          }
+        } 
+
+        ctx.putImageData(data, 0, 0);
+        //save as image
+        frames.push(c.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+    }
+
+    //make download button available once all frames have been created
+    document.getElementById('downloadBtn').style.display = "block";
 }
-
 

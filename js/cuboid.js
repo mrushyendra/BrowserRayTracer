@@ -72,19 +72,17 @@ function cuboidIntersection(cuboid, ray) {
         if(txMax < 0){
             return;
         } else{
-            return txMax;
+            var intersectionPt = Vector.add(rayNew.point, Vector.scale(rayNew.vector, txMax));
+            return [Vector.length(Vector.scale(ray.vector, txMax)), intersectionPt]; //actual intersection point = ray.point + ray.vector*t
         }
     } else {
-        return txMin;
+        var intersectionPt = Vector.add(rayNew.point, Vector.scale(rayNew.vector, txMin));
+        return [Vector.length(Vector.scale(ray.vector, txMin)), intersectionPt]; //actual intersection point = ray.point + ray.vector*t
     }
 }
 
-function cuboidNormal(cuboid, pos){
-    //convert intersection pt to obj space
-    var intersectionPtArr = [pos.x, pos.y, pos.z, 1]; 
-    intersectionPtArr = math.multiply(cuboid.SRTInv, intersectionPtArr);
-    intersectionPtArr = intersectionPtArr.valueOf();
-    var intersectionPtnew = {x: intersectionPtArr[0], y: intersectionPtArr[1], z: intersectionPtArr[2]};//in obj space
+function cuboidNormal(cuboid, pos, intersectPtObjSpace){
+    var intersectionPtnew = intersectPtObjSpace;
 
     var normalObjSpace = {x:0, y:0, z:0};
     var eps = 0.1;
