@@ -34,25 +34,36 @@ function cylinderIntersection(cylinder, ray) {
 
     var t1 = (-b + Math.sqrt(discriminant))/(2*a);
     var t2 = (-b - Math.sqrt(discriminant))/(2*a);
-    
-    var t = t1;
     if(t1 < 0 && t2 < 0){
         return;
     }
-    if(t1 < 0){
-        t = t2;
-    } else if (t2 < 0){
-        t = t1;
-    } else {
-        t = Math.min(t1,t2);
+
+    if(t1 > t2){
+        var temp = t1;
+        t1 = t2;
+        t2 = temp;
     }
 
+    if(t1 < 0.1){
+        t = t2;
+    } else {
+        //check intersection with top and bottom of cylinder, if both intersection points are on either side of yMin/yMax
+        var pt1 = Vector.add(rayNew.point, Vector.scale(rayNew.vector, t1));
+        var pt2 = Vector.add(rayNew.point, Vector.scale(rayNew.vector, t2));
+        if(pt1.y < cylinder.yMin && cylinder.yMin < pt2.y){
+            t = (cylinder.yMin - rayNew.point.y)/rayNew.vector.y;
+        } else if (pt1.y > cylinder.yMax && cylinder.yMax > pt2){
+            t = (cylinder.yMax - rayNew.point.y)/rayNew.vector.y;
+        } else {
+            t = t1; //intersection with side
+        }
+    }
     if(t < 0.1)
         return;
 
     //calculate intersection pt in object space to see if it lies in finite limits of cylinder
     var intersectionPt = Vector.add(rayNew.point, Vector.scale(rayNew.vector, t));
-    if((intersectionPt.y < cylinder.yMin) || (intersectionPt.y > cylinder.yMax)){
+    if((intersectionPt.y < (cylinder.yMin - 0.1)) || (intersectionPt.y > (cylinder.yMax + 0.1))){
         return; //outside the finite cylinder
     }
     
@@ -61,13 +72,21 @@ function cylinderIntersection(cylinder, ray) {
 
 function cylinderNormal(cylinder, pos, intersectPtObjSpace) {
     var intersectionPtnew = intersectPtObjSpace;
-
-    //calculate normal in object space
-    //basic trigonometry to calculate length of hypotenuse, then calculate normal in object space by joining end of hyp with intersection pt
-    var hyp = Vector.subtract(intersectionPtnew, cylinder.center);
-    var adj = (Vector.dotProduct(hyp, cylinder.axis))/(Vector.length(cylinder.axis));
-    var adjVec = Vector.scale(cylinder.axis, adj);
-    var normalObjSpace = Vector.subtract(hyp, adjVec);
+    var normalObjSpace = {x: 0, y: 0, z: 0};
+    var eps = 0.1;
+    
+    if(Math.abs(intersectionPtnew.y - cylinder.yMin) <=  eps){ //for bottom face of cylinder
+        normalObjSpace = {x: 0, y: -1, z: 0};
+    } else if (Math.abs(intersectionPtnew.y - cylinder.yMax) <= eps){ //top face
+        normalObjSpace = {x: 0, y: 1, z: 0};
+    } else {
+        //calculate normal in object space
+        //basic trigonometry to calculate length of hypotenuse, then calculate normal in object space by joining end of hyp with intersection pt
+        var hyp = Vector.subtract(intersectionPtnew, cylinder.center);
+        var adj = (Vector.dotProduct(hyp, cylinder.axis))/(Vector.length(cylinder.axis));
+        var adjVec = Vector.scale(cylinder.axis, adj);
+        normalObjSpace = Vector.subtract(hyp, adjVec);
+    }
 
     //convert normal to world space
     var normalArr = [normalObjSpace.x, normalObjSpace.y, normalObjSpace.z, 0];
@@ -79,14 +98,25 @@ function cylinderNormal(cylinder, pos, intersectPtObjSpace) {
 }
 
 function cylinderColor(scene, cylinder, point, intersectPtObjSpace){
-    var intersectionPtNew = intersectPtObjSpace;
+    var intersectionPtnew = intersectPtObjSpace;
+    var eps = 0.1;
+    var u = 0; var v = 0;
+    
+    //texture on top and bototn of cylinder
+    if((Math.abs(intersectionPtnew.y - cylinder.yMin) <=  eps) || (Math.abs(intersectionPtnew.y - cylinder.yMax) <= eps)){
+        var r = Math.sqrt((intersectionPtnew.x * intersectionPtnew.x) + (intersectionPtnew.z * intersectionPtnew.z));
+        var phi = Math.acos(intersectionPtnew.x/r);
+        u = Math.round((r/cylinder.r)*scene.textures[cylinder.texture].width); //scale to [0-imgWidth]
+        v = Math.round((phi/(2*Math.PI))*scene.textures[cylinder.texture].height);
+    } else {
+        //calculate cylindrical coordinates, then transform to u,v coords
+        u = Math.abs(intersectionPtnew.y);
+        var height = Math.abs(cylinder.yMax);
+        var phi = Math.acos(intersectionPtnew.x/cylinder.r);
+        u = Math.round((u/height)*scene.textures[cylinder.texture].width); //scale to [0-imgWidth]
+        v = Math.round((phi/(2*Math.PI))*scene.textures[cylinder.texture].height);
+    }
 
-    //calculate cylindrical coordinates, then transform to u,v coords
-    var u = Math.abs(intersectionPtnew.y);
-    var height = Math.abs(cylinder.yMax);
-    var phi = Math.acos(intersectionPtnew.x/cylinder.r);
-    u = Math.round((u/height)*scene.textures[cylinder.texture].width); //scale to [0-imgWidth]
-    var v = Math.round((phi/(2*Math.PI))*scene.textures[cylinder.texture].height);
     var objColor = {};
     objColor.x = scene.textures[cylinder.texture].data.data[(scene.textures[cylinder.texture].width*v*4) + (u*4)];
     objColor.y = scene.textures[cylinder.texture].data.data[(scene.textures[cylinder.texture].width*v*4) + (u*4) + 1];

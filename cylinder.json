@@ -56,6 +56,19 @@
 				"y": 50,
 				"z": 200
 			}
+		},
+		{
+			"type": "omni",
+			"point": {
+				"x": 25,
+				"y": -10,
+				"z": 50
+			},
+			"color": {
+				"x": 100,
+				"y": 255,
+				"z": 50
+			}
 		}
 	],
 	"objects" : [
@@ -78,26 +91,29 @@
             "Tx" : 20,
             "Ty" : 0,
             "Tz" : 0,
-            "rx" : 0,
+            "rx" : -20,
             "ry" : 0,
-            "rz" : -20,
+            "rz" : 0,
             "sx" : 1,
             "sy" : 1,
             "sz" : 1,
             "boundingBoxPos" : {
-              "x" : -100,
-              "y" : -100,
-              "z" : -100
+              "x" : -1,
+              "y" : -1,
+              "z" : -30
             },
             "boundingBoxDim" : {
-              "x" : 200,
-              "y" : 200,
-              "z" : 200
+              "x" : 42,
+              "y" : 55,
+              "z" : 42
             },
             "isTransparent" : false,
             "refracIdx" : 1.5,
-            "enableTextureMap" : false,
-            "texture" : 0
+            "enableTextureMap" : true,
+            "texture" : 0,
+            "Vx" : 1,
+            "Vy" : 0,
+            "Vz" : 0
 		}
 	],
 	"mats" : [

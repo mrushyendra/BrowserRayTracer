@@ -119,11 +119,9 @@ function render(scene) {
 
 function updateScene(scene, timeStep){
     for(var i = 0; i < scene.objects.length; ++i){
-        scene.updatePosFns[scene.objects[i].type](scene.objects[i], timeStep);
-        if(scene.objects[i].type == "sphere"){
-            console.log(scene.objects[i].point);
-        }
+        scene.updatePosFns[scene.objects[i].type](scene.objects[i], timeStep); //call function for respective shape to update its position in the scene
     }
+    precomputeTransformations(scene); //recompute the matrix transformations for primitives
     return scene;
 }
 
