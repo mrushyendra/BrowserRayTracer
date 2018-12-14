@@ -98,19 +98,7 @@ function surface(ray, scene, octree, object, pointAtTime, intersectPtObjSpace, n
     } else { //normal object
         var objColor = {};
         if(object.enableTextureMap){
-            if ((object.type == 'sphere') || (object.type == 'spherelong') || (object.type == 'spheretex')){
-                objColor = sphereColor(scene, object, pointAtTime, intersectPtObjSpace);
-            } else if (object.type == 'triangle'){
-                objColor = triangleColor(scene, object, pointAtTime, intersectPtObjSpace);
-            } else if (object.type == 'cuboid'){
-                objColor = cuboidColor(scene, object, pointAtTime, intersectPtObjSpace);
-            } else if (object.type == 'cone'){
-                objColor = coneColor(scene, object, pointAtTime, intersectPtObjSpace);
-            } else if (object.type == 'cylinder'){
-                objColor = cylinderColor(scene, object, pointAtTime, intersectPtObjSpace);
-            } else if(object.type == 'plane'){
-                objColor = planeColor(scene, object, pointAtTime, intersectPtObjSpace);
-            }
+            objColor = scene.mapTextureFns[object.type](scene, object, pointAtTime, intersectPtObjSpace); //map texture
         } else {
             objColor= scene.mats[object.mat].color;
         }
@@ -129,13 +117,23 @@ function surface(ray, scene, octree, object, pointAtTime, intersectPtObjSpace, n
                 // First: can we see the light? If not, this is a shadowy area
                 // and it gets no light from the lambert shading process.
 
+			   var contribution = 0;
                if (isLightVisible(pointAtTime, scene, octree, lightPoint)){
                  // Otherwise, calculate the lambertian reflectance, which
                  // essentially is a 'diffuse' lighting system - direct light
                  // is bright, and from there, less direct light is gradually,
                  // beautifully, less light.
-
-                 var contribution = Vector.dotProduct(Vector.unitVector(Vector.subtract(lightPoint, pointAtTime)), normal);
+				 if(scene.lights[i].type == 'spot'){
+					var lightDir = Vector.subtract(scene.lights[i].topoint, scene.lights[i].point);
+					var lightToPt = Vector.subtract(pointAtTime, scene.lights[i].point); //get vector from light to intersection pt
+					var angle = Math.acos(Vector.dotProduct(lightDir, lightToPt)/(Vector.length(lightDir)*Vector.length(lightToPt)))
+					var angleDegrees = (angle*180)/Math.PI;
+					if (scene.lights[i].angle >= angleDegrees) {
+						contribution = Vector.dotProduct(Vector.unitVector(Vector.subtract(lightPoint, pointAtTime)), normal);
+					}
+				 } else { //normal omni light
+                 	contribution = Vector.dotProduct(Vector.unitVector(Vector.subtract(lightPoint, pointAtTime)), normal);
+				 }
                  if (contribution > 0) 
                    lambertAmount = Vector.add(lambertAmount, Vector.scale(scene.lights[i].color, contribution));
                }

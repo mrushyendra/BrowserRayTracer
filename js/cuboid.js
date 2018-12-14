@@ -109,6 +109,9 @@ function cuboidNormal(cuboid, pos, intersectPtObjSpace){
     return Vector.unitVector(normal);
 }
 
+function cuboidColor(){
+}
+
 function updateCuboid(cuboid, timeStep){
     var vx = cuboid.Vx;
     var vy = cuboid.Vy;

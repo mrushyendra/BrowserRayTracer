@@ -1,0 +1,444 @@
+{
+	"camera" : {
+		"point": {
+			"x": 50,
+			"y": 50,
+			"z": 400
+		},
+		"fieldOfView": 40,
+		"toPoint": {
+			"x": 50,
+			"y": 50,
+			"z": 0
+		},
+		"up": {
+			"x": 0,
+			"y": 1,
+			"z": 0
+		}
+	},
+	"lights" : [
+		{
+			"type": "omni",
+			"point": {
+				"x": 50,
+				"y": 95,
+				"z": 50
+			},
+			"color": {
+				"x": 100,
+				"y": 255,
+				"z": 50
+			}
+		},
+		{
+			"type": "omni",
+			"point": {
+				"x": 5,
+				"y": 95,
+				"z": 100
+			},
+			"color": {
+				"x": 255,
+				"y": 120,
+				"z": 100
+			}
+		}, 
+		{
+			"type": "omni",
+			"point": {
+				"x": 95,
+				"y": 5,
+				"z": 100
+			},
+			"color": {
+				"x": 50,
+				"y": 50,
+				"z": 200
+			}
+		}
+	],
+	"objects" : [
+		 {
+			"type": "sphere",
+			"point": {
+			    "x": 70,
+			    "y": 25,
+			    "z": 50
+			},
+			"mat": 0,
+			"radius": 25,
+          "boundingBoxPos" : {
+            "x" : 44,
+            "y" : 0,
+            "z" : 24
+          },
+          "boundingBoxDim" : {
+            "x" : 53,
+            "y" : 53,
+            "z" : 53
+          },
+          "isTransparent" : false,
+          "refracIdx" : 1.5,
+          "Vx" : 1,
+          "Vy" : 0,
+          "Vz" : 0
+		},
+		{
+			"type": "cone",
+			"apex": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "theta" : 45,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 30,
+            "Tx" : 30,
+            "Ty" : 0,
+            "Tz" : 40,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : 0,
+              "y" : 0,
+              "z" : 0
+            },
+            "boundingBoxDim" : {
+              "x" : 80,
+              "y" : 80,
+              "z" : 80
+            },
+            "isTransparent" : true,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : false,
+            "texture" : 0,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+        {
+			"type": "triangle",
+			"point1": {
+			"x": 0, "y": 0, "z": 0
+			},
+			"point2": {
+			"x": 100, "y": 0, "z": 0
+			},
+			"point3": {
+			"x": 0, "y": 100, "z": 0
+			},
+			"mat": 1,
+          "boundingBoxPos" : {
+            "x" : 0,
+            "y" : 0,
+            "z" : 0 
+          },
+          "boundingBoxDim" : {
+            "x" : 102,
+            "y" : 102,
+            "z" : 2
+          },		
+          "isTransparent" : false,
+          "Vx" : 1,
+          "Vy" : 0,
+          "Vz" : 0
+		},
+		{
+			"type": "triangle",
+			"point1": {
+			"x": 100, "y": 0, "z": 0
+			},
+			"point2": {
+			"x": 100, "y": 100, "z": 0
+			},
+			"point3": {
+			"x": 0, "y": 100, "z": 0
+			},
+			"mat": 1,
+          "boundingBoxPos" : {
+            "x" : -1,
+            "y" : -1,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 102,
+            "y" : 102,
+            "z" : 2
+          },		
+          "isTransparent" : false,
+          "Vx" : 1,
+          "Vy" : 0,
+          "Vz" : 0
+		},
+        {
+			"type": "plane",
+            "height" : 100,
+            "width" : 100,
+			"mat": 1,
+            "Tx" : 0,
+            "Ty" : 0,
+            "Tz" : 100,
+            "rx" : -90,
+            "ry" : 0,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : 0,
+              "y" : -2,
+              "z" : 0
+            },
+            "boundingBoxDim" : {
+              "x" : 100,
+              "y" : 4,
+              "z" : 100
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : false,
+            "texture" : 0,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0        
+        },
+		{
+			"type": "triangle",
+			"point1": {
+			"x": 0, "y": 100, "z": 0
+			},
+			"point2": {
+			"x": 100, "y": 100, "z": 0
+			},
+			"point3": {
+			"x": 100, "y": 100, "z": 100	
+			},
+			"mat": 1,
+          "boundingBoxPos" : {
+            "x" : -1,
+            "y" : 99,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 102,
+            "y" : 2,
+            "z" : 102
+          },
+          "isTransparent" : false,
+          "Vx" : 0,
+          "Vy" : 0,
+          "Vz" : 0
+		},
+		{
+			"type": "triangle",
+			"point1": {
+			"x": 100, "y": 100, "z": 100
+			},
+			"point2": {
+			"x": 0, "y":100, "z": 100
+			},
+			"point3": {
+			"x": 0, "y": 100, "z": 0
+			},
+			"mat": 1,
+          "boundingBoxPos" : {
+            "x" : -1,
+            "y" : 99,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 102,
+            "y" : 2,
+            "z" : 102
+          },
+          "isTransparent" : false,
+          "Vx" : 0,
+          "Vy" : 0,
+          "Vz" : 0
+		},
+		{
+			"type": "triangle",
+			"point1": {
+			"x": 0, "y": 0, "z": 0
+			},
+			"point2": {
+			"x": 0, "y": 100, "z": 0
+			},
+			"point3": {
+			"x": 0, "y": 100, "z": 100	
+			},
+			"mat": 2,
+          "boundingBoxPos" : {
+            "x" : -1,
+            "y" : -1,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 102,
+            "y" : 102,
+            "z" : 102
+          },
+          "isTransparent" : false,
+          "Vx" : 0,
+          "Vy" : 0,
+          "Vz" : 0
+		},
+		{
+			"type": "triangle",
+			"point1": {
+			"x": 0, "y": 100, "z": 100
+			},
+			"point2": {
+			"x": 0, "y":0, "z": 100
+			},
+			"point3": {
+			"x": 0, "y": 0, "z": 0
+			},
+			"mat": 2,
+          "boundingBoxPos" : {
+            "x" : -1,
+            "y" : -1,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 2,
+            "y" : 102,
+            "z" : 102
+          },
+          "isTransparent" : false,
+          "Vx" : 0,
+          "Vy" : 0,
+          "Vz" : 0
+
+		},
+		{
+			"type": "triangle",
+			"point1": {
+			"x": 100, "y": 0, "z": 0
+			},
+			"point2": {
+			"x": 100, "y": 0, "z": 100
+			},
+			"point3": {
+			"x": 100, "y": 100, "z": 100	
+			},
+			"mat": 3,
+          "boundingBoxPos" : {
+            "x" : 99,
+            "y" : -1,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 2,
+            "y" : 102,
+            "z" : 102
+          },
+          "isTransparent" : false,
+          "Vx" : 0,
+          "Vy" : 0,
+          "Vz" : 0
+		},
+		{
+			"type": "triangle",
+			"point1": {
+			"x": 100, "y": 100, "z": 100
+			},
+			"point2": {
+			"x": 100, "y":100, "z": 0
+			},
+			"point3": {
+			"x": 100, "y": 0, "z": 0
+			},
+			"mat": 3,
+          "boundingBoxPos" : {
+            "x" : 99,
+            "y" : -1,
+            "z" : -1
+          },
+          "boundingBoxDim" : {
+            "x" : 2,
+            "y" : 102,
+            "z" : 102
+          },
+          "isTransparent" : false,
+          "Vx" : 0,
+          "Vy" : 0,
+          "Vz" : 0
+		}
+	],
+	"mats" : [
+		{
+			"type": "orig",
+			"color": {
+			       "x": 255,
+			       "y": 255,
+			       "z": 255
+				},
+			"specular": 0.9,
+			"lambert": 0.0,
+			"ambient": 0.00
+		},
+		{
+			"type": "orig",
+			"color": {
+			       "x": 255,
+			       "y": 255,
+			       "z": 255
+				},
+		       "specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.05
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 255,
+				"y": 90,
+				"z": 90
+				},
+			"specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.1
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 90,
+				"y": 90,
+				"z": 255
+				},
+			"specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.0
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 255,
+				"y": 255,
+				"z": 255
+				},
+			"specular": 0.9,
+			"lambert": 0.05,
+			"ambient": 0.05
+		}
+	],
+    "textures" : [
+        {
+            "url" : "textures/marble.jpg"
+        }
+    ]
+}
+
+

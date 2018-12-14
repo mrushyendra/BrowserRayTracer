@@ -72,6 +72,17 @@ function loadScene(sceneRaw){
         "cylinder" : updateCylinder
     };
 
+    scene.mapTextureFns = {
+        "sphere" : sphereColor,
+        "triangle" : triangleColor,
+        "plane" : planeColor,
+        "cuboid" : cuboidColor,
+        "cone" : coneColor,
+        "spheretex" : sphereColor,
+        "spherelong" : sphereColor,
+        "cylinder" : cylinderColor
+    };
+
     return scene;
 }
 
