@@ -48,17 +48,19 @@ function loadScene(sceneRaw){
     //load textures
     for(var i = 0; i < scene.textures.length; ++i){
         var img = new Image();
+        img.onload = (function(value) {
+                return function(){
+                    this.textureIdx = value;
+                    var textureCanvas = document.createElement('canvas');
+                    textureCanvas.width = this.width;
+                    textureCanvas.height = this.height;
+                    textureCanvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
+                    scene.textures[this.textureIdx].width = this.width;
+                    scene.textures[this.textureIdx].height = this.height;
+                    scene.textures[this.textureIdx].data = textureCanvas.getContext('2d').getImageData(0,0,this.width, this.height);
+                }
+        })(i);
         img.src = scene.textures[i].url;
-        img.textureIdx = i;
-        img.onload = function() {
-            var textureCanvas = document.createElement('canvas');
-            textureCanvas.width = img.width;
-            textureCanvas.height = img.height;
-            textureCanvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
-            scene.textures[img.textureIdx].width = img.width;
-            scene.textures[img.textureIdx].height = img.height;
-            scene.textures[img.textureIdx].data = textureCanvas.getContext('2d').getImageData(0,0,img.width, img.height);
-        }
     }
 
     scene.updatePosFns = {

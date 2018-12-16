@@ -59,7 +59,7 @@
 		}
 	],
 	"objects" : [
-		 {
+		{
 			"type": "cuboid",
 			"pos": {
 			    "x": 0,
@@ -67,14 +67,14 @@
 			    "z": 0 
 			},
             "dim": {
-                "x" : 50,
-                "y" : 50,
-                "z" : 50
+                "x" : 30,
+                "y" : 30,
+                "z" : 30
             },
 			"mat": 1,
-            "Tx" : 30,
+            "Tx" : 20,
             "Ty" : 0,
-            "Tz" : 24,
+            "Tz" : 30,
             "rx" : 0,
             "ry" : 10,
             "rz" : 0,
@@ -82,22 +82,25 @@
             "sy" : 1,
             "sz" : 1,
           "boundingBoxPos" : {
-            "x" : 20,
+            "x" : 10,
             "y" : 0,
-            "z" : 4
+            "z" : 40
           },
           "boundingBoxDim" : {
-            "x" : 63,
-            "y" : 63,
-            "z" : 63
+            "x" : 53,
+            "y" : 53,
+            "z" : 53
           },
           "isTransparent" : false,
           "refracIdx" : 1.5,
           "enableTextureMap" : false,
-          "texture" : 0
-		},
+          "texture" : 0,
+          "Vx" : 0,
+          "Vy" : 0,
+          "Vz" : 0
+		}, 		 
 		{
-			"type": "spherelong",
+		    "type": "spherelong",
 			"point": {
 				"x": 20,
 				"y": 10,

@@ -1,0 +1,1065 @@
+{
+	"camera" : {
+		"point": {
+			"x": 0,
+			"y": 70,
+			"z": 400
+		},
+		"fieldOfView": 50,
+		"toPoint": {
+			"x": 0,
+			"y": 50,
+			"z": 0
+		},
+		"up": {
+			"x": 0,
+			"y": 1,
+			"z": 0
+		}
+	},
+	"lights" : [
+		{
+			"type": "omni",
+            "desc" : "left light",
+			"point": {
+				"x": -80,
+				"y": 95,
+				"z": 90
+			},
+			"color": {
+				"x": 255,
+				"y": 244,
+				"z": 229
+			}
+		},
+		{
+			"type": "omni",
+            "desc" : "right light",
+			"point": {
+				"x": 100,
+				"y": 95,
+				"z": 100
+			},
+			"color": {
+				"x": 255,
+				"y": 244,
+				"z": 229
+			}
+		}, 
+		{
+			"type": "omni",
+            "desc" : "middle light",
+			"point": {
+				"x": 0,
+				"y": 50,
+				"z": 50
+			},
+			"color": {
+				"x": 244,
+				"y": 255,
+				"z": 250
+			}
+		},
+		{
+			"type": "omni",
+            "desc" : "on cylinders light",
+			"point": {
+				"x": 20,
+				"y": 20,
+				"z": 100
+			},
+			"color": {
+				"x": 244,
+				"y": 255,
+				"z": 250
+			}
+		},
+		{
+			"type": "omni",
+            "desc" : "warm tungsten light",
+			"point": {
+				"x": 20,
+				"y": 50,
+				"z": 120
+			},
+			"color": {
+				"x": 255,
+				"y": 214,
+				"z": 170
+			}
+		},
+        {
+            "type" : "spot",
+            "desc" : "shine on snowman",
+			"point": {
+				"x": -40,
+				"y": 50,
+				"z": 150
+			},
+            "topoint" : {
+                "x" : -60,
+                "y" : 50,
+                "z" : 80
+            },
+            "angle" : 20,
+			"color": {
+				"x": 244,
+				"y": 255,
+				"z": 250
+			}
+		}
+	],
+	"objects" : [
+        {
+			"type": "plane",
+            "height" : 200,
+            "width" : 250,
+			"mat": 1,
+            "Tx" : -125,
+            "Ty" : 0,
+            "Tz" : 100,
+            "rx" : -90,
+            "ry" : 0,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -126,
+              "y" : -2,
+              "z" : -101
+            },
+            "boundingBoxDim" : {
+              "x" : 255,
+              "y" : 4,
+              "z" : 202
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 4,
+            "isGlossy" : false,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0        
+        },
+		{
+			"type": "sphere",
+			"point": {
+			    "x": -60,
+			    "y": 20,
+			    "z": 80
+			},
+			"mat": 3,
+			"radius": 20,
+            "boundingBoxPos" : {
+                "x" : -80,
+                "y" : 0,
+                "z" : 59
+            },
+            "boundingBoxDim" : {
+                "x" : 42,
+                "y" : 42,
+                "z" : 42
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.6,
+            "isGlossy" : false,
+            "enableTextureMap" : true,
+            "texture" : 5,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+        },
+		{
+			"type": "sphere",
+			"point": {
+			    "x": -60,
+			    "y": 51,
+			    "z": 80
+			},
+			"mat": 3,
+			"radius": 13,
+            "boundingBoxPos" : {
+                "x" : -73,
+                "y" : 37,
+                "z" : 67
+            },
+            "boundingBoxDim" : {
+                "x" : 28,
+                "y" : 28,
+                "z" : 28
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.6,
+            "isGlossy" : false,
+            "enableTextureMap" : true,
+            "texture" : 5,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+        },
+		{
+			"type": "sphere",
+			"point": {
+			    "x": -60,
+			    "y": 67,
+			    "z": 80
+			},
+			"mat": 3,
+			"radius": 6,
+            "boundingBoxPos" : {
+                "x" : -67,
+                "y" : 61,
+                "z" : 73
+            },
+            "boundingBoxDim" : {
+                "x" : 14,
+                "y" : 14,
+                "z" : 14
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.6,
+            "isGlossy" : false,
+            "enableTextureMap" : true,
+            "texture" : 5,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+        },		
+		{
+			"type": "sphere",
+            "desc" : "right eye",
+			"point": {
+			    "x": -58,
+			    "y": 68,
+			    "z": 84
+			},
+			"mat": 3,
+			"radius": 1,
+            "boundingBoxPos" : {
+                "x" : -60,
+                "y" : 66,
+                "z" : 82
+            },
+            "boundingBoxDim" : {
+                "x" : 5,
+                "y" : 5,
+                "z" : 5
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.6,
+            "isGlossy" : false,
+            "enableTextureMap" : true,
+            "texture" : 3,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+        },		
+		{
+			"type": "sphere",
+            "desc" : "right eye",
+			"point": {
+			    "x": -62,
+			    "y": 68,
+			    "z": 84
+			},
+			"mat": 3,
+			"radius": 1,
+            "boundingBoxPos" : {
+                "x" : -64,
+                "y" : 66,
+                "z" : 82
+            },
+            "boundingBoxDim" : {
+                "x" : 5,
+                "y" : 5,
+                "z" : 5
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.6,
+            "isGlossy" : false,
+            "enableTextureMap" : true,
+            "texture" : 3,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+        },		
+        {
+			"type": "cylinder",
+            "desc" : "right arm",
+			"center": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "r" : 2,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : -50,
+            "Ty" : 55,
+            "Tz" : 80,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : -80,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -55,
+              "y" : 50,
+              "z" : 75
+            },
+            "boundingBoxDim" : {
+              "x" : 30,
+              "y" : 30,
+              "z" : 30
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 3,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0,
+            "isGlossy" : false
+		},
+        {
+			"type": "cylinder",
+            "desc" : "left arm",
+			"center": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "r" : 2,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : -65,
+            "Ty" : 55,
+            "Tz" : 80,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 80,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -80,
+              "y" : 50,
+              "z" : 75
+            },
+            "boundingBoxDim" : {
+              "x" : 30,
+              "y" : 30,
+              "z" : 30
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 3,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0,
+            "isGlossy" : false
+		},
+		{
+			"type": "cone",
+            "desc" : "hat",
+			"apex": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "theta" : 45,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 10,
+            "Tx" : -60,
+            "Ty" : 81,
+            "Tz" : 80,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 180,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -70,
+              "y" : 68,
+              "z" : 70
+            },
+            "boundingBoxDim" : {
+              "x" : 20,
+              "y" : 20,
+              "z" : 20
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 3,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+		{
+			"type": "cylinder",
+			"center": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "r" : 5,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : 20,
+            "Ty" : 0,
+            "Tz" : 80,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : 14,
+              "y" : 0,
+              "z" : 70
+            },
+            "boundingBoxDim" : {
+              "x" : 30,
+              "y" : 30,
+              "z" : 30
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 4,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0,
+            "isGlossy" : false
+		},
+		{
+			"type": "cylinder",
+            "desc" : "coke",
+			"center": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "r" : 5,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : 30,
+            "Ty" : 0,
+            "Tz" : 80,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : 24,
+              "y" : 0,
+              "z" : 70
+            },
+            "boundingBoxDim" : {
+              "x" : 30,
+              "y" : 30,
+              "z" : 30
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 6,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0,
+            "isGlossy" : false
+		},
+		{
+			"type": "cylinder",
+            "desc" : "soup",
+			"center": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "r" : 5,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : 10,
+            "Ty" : 0,
+            "Tz" : 80,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 0,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : 4,
+              "y" : 0,
+              "z" : 70
+            },
+            "boundingBoxDim" : {
+              "x" : 30,
+              "y" : 30,
+              "z" : 30
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 7,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0,
+            "isGlossy" : false
+		},
+		{
+			"type": "cone",
+            "desc" : "front cone",
+			"apex": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "theta" : 45,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : -20,
+            "Ty" : 20,
+            "Tz" : 55,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 180,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -40,
+              "y" : 0,
+              "z" : 35
+            },
+            "boundingBoxDim" : {
+              "x" : 40,
+              "y" : 40,
+              "z" : 40
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 3,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+		{
+			"type": "cone",
+            "desc" : "orange cone",
+			"apex": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "theta" : 45,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : 10,
+            "Ty" : 20,
+            "Tz" : 10,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 180,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -10,
+              "y" : 0,
+              "z" : -10
+            },
+            "boundingBoxDim" : {
+              "x" : 40,
+              "y" : 40,
+              "z" : 40
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 8,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+        },
+    	{
+			"type": "cone",
+            "desc" : "yellow cone",
+			"apex": {
+			    "x": 0,
+			    "y": 0,
+			    "z": 0
+			},
+            "axis": {
+                "x" : 0,
+                "y" : 1,
+                "z" : 0
+            },
+            "theta" : 45,
+			"mat": 1,
+            "yMin" : 0,
+            "yMax" : 20,
+            "Tx" : -30,
+            "Ty" : 20,
+            "Tz" : 0,
+            "rx" : 0,
+            "ry" : 0,
+            "rz" : 180,
+            "sx" : 1,
+            "sy" : 1,
+            "sz" : 1,
+            "boundingBoxPos" : {
+              "x" : -50,
+              "y" : 0,
+              "z" : -20
+            },
+            "boundingBoxDim" : {
+              "x" : 40,
+              "y" : 40,
+              "z" : 40
+            },            
+            "isTransparent" : false,
+            "refracIdx" : 1.5,
+            "enableTextureMap" : true,
+            "texture" : 9,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+		{
+			"type": "sphere",
+            "desc" : "medium transparent sphere",
+			"point": {
+			    "x": 50,
+			    "y": 15,
+			    "z": 50
+			},
+			"mat": 0,
+			"radius": 15,
+            "boundingBoxPos" : {
+                "x" : 34,
+                "y" : -1,
+                "z" : 34
+            },
+            "boundingBoxDim" : {
+                "x" : 32,
+                "y" : 32,
+                "z" : 32
+            },
+            "isTransparent" : true,
+            "refracIdx" : 1.6,
+            "isGlossy" : false,
+            "enableTextureMap" : false,
+            "texture" : 3,
+            "Vx" : 0.3,
+            "Vy" : 0.4,
+            "Vz" : -0.1
+        },		
+		{
+			"type": "sphere",
+            "desc" : "medium reflective sphere",
+			"point": {
+			    "x": 75,
+			    "y": 15,
+			    "z": 80
+			},
+			"mat": 0,
+			"radius": 15,
+            "boundingBoxPos" : {
+                "x" : 60,
+                "y" : -1,
+                "z" : 64
+            },
+            "boundingBoxDim" : {
+                "x" : 32,
+                "y" : 32,
+                "z" : 32
+            },
+            "isTransparent" : false,
+            "refracIdx" : 1.6,
+            "isGlossy" : false,
+            "enableTextureMap" : false,
+            "texture" : 3,
+            "Vx" : 0.5,
+            "Vy" : 0.2,
+            "Vz" : 0
+        },		
+        {
+            "type": "triangle",
+            "desc" : "left side triangle",
+			"point1": {
+                "x": -125, "y": 100, "z": 100
+			},
+			"point2": {
+                "x": -125, "y": 0, "z": 100
+			},
+			"point3": {
+                "x": -125, "y": 0, "z": -100
+			},
+			"mat": 0,
+            "boundingBoxPos" : {
+                "x" : -126,
+                "y" : -1,
+                "z" : -100 
+            },
+            "boundingBoxDim" : {
+                "x" : 2,
+                "y" : 102,
+                "z" : 202
+            },		
+            "isTransparent" : false,
+            "isGlossy" : true,
+            "enableTextureMap" : false,
+            "texture" : 0,
+            "textureMapCoords" : [
+                {"u" : 100, "v" : 200 },
+                {"u" : 0, "v" : 200},
+                {"u" : 0, "v" : 0}
+            ],
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+		{
+			"type": "triangle",
+            "desc" : "left side triangle",
+			"point1": {
+			    "x": -125, "y": 100, "z": 100
+			},
+			"point2": {
+			    "x": -125, "y": 0, "z": -100
+			},
+			"point3": {
+			    "x": -125, "y": 100, "z": -100
+			},
+			"mat": 0,
+            "boundingBoxPos" : {
+                "x" : -126,
+                "y" : -1,
+                "z" : -100
+            },
+            "boundingBoxDim" : {
+                "x" : 2,
+                "y" : 102,
+                "z" : 202
+            },		
+            "isTransparent" : false,
+            "isGlossy" : true,
+            "enableTextureMap" : false,
+            "texture" : 0,
+            "textureMapCoords" : [
+                {"u" : 100, "v" : 200 },
+                {"u" : 0, "v" : 200},
+                {"u" : 0, "v" : 0}
+            ],
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+        {
+            "type": "triangle",
+            "desc" : "right side triangle",
+			"point1": {
+                "x": 125, "y": 100, "z": 100
+			},
+			"point2": {
+                "x": 125, "y": 0, "z": -100
+			},
+			"point3": {
+                "x": 125, "y": 0, "z": 100
+			},
+			"mat": 0,
+            "boundingBoxPos" : {
+                "x" : 124,
+                "y" : -1,
+                "z" : -101 
+            },
+            "boundingBoxDim" : {
+                "x" : 2,
+                "y" : 102,
+                "z" : 202
+            },		
+            "isTransparent" : false,
+            "isGlossy" : true,
+            "enableTextureMap" : false,
+            "textureMapCoords" : [
+                {"u" : 100, "v" : 200 },
+                {"u" : 0, "v" : 200},
+                {"u" : 0, "v" : 0}
+            ],
+            "texture" : 0,
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+		{
+			"type": "triangle",
+            "desc" : "right side triangle",
+			"point1": {
+			    "x": 125, "y": 100, "z": 100
+			},
+			"point2": {
+			    "x": 125, "y": 100, "z": -100
+			},
+			"point3": {
+			    "x": 125, "y": 0, "z": -100
+			},
+			"mat": 0,
+            "boundingBoxPos" : {
+                "x" : 124,
+                "y" : -1,
+                "z" : -101
+            },
+            "boundingBoxDim" : {
+                "x" : 2,
+                "y" : 102,
+                "z" : 202
+            },		
+            "isTransparent" : false,
+            "isGlossy" : true,
+            "enableTextureMap" : false,
+            "texture" : 0,
+            "textureMapCoords" : [
+                {"u" : 100, "v" : 200 },
+                {"u" : 0, "v" : 200},
+                {"u" : 0, "v" : 0}
+            ],
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+        {
+            "type": "triangle",
+            "desc" : "back triangle",
+			"point3": {
+                "x": -125, "y": 100, "z": -100
+			},
+			"point2": {
+                "x": 125, "y": 0, "z": -100
+			},
+			"point1": {
+                "x": -125, "y": 0, "z": -100
+			},
+			"mat": 1,
+            "boundingBoxPos" : {
+                "x" : -126,
+                "y" : -1,
+                "z" : -101 
+            },
+            "boundingBoxDim" : {
+                "x" : 252,
+                "y" : 102,
+                "z" : 2
+            },		
+            "isTransparent" : false,
+            "isGlossy" : false,
+            "enableTextureMap" : false,
+            "texture" : 0,
+            "textureMapCoords" : [
+                {"u" : 100, "v" : 200 },
+                {"u" : 0, "v" : 200},
+                {"u" : 0, "v" : 0}
+            ],
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		},
+		{
+			"type": "triangle",
+            "desc" : "back triangle",
+			"point3": {
+			    "x": -125, "y": 100, "z": -100
+			},
+			"point2": {
+			    "x": 125, "y": 100, "z": -100
+			},
+			"point1": {
+			    "x": 125, "y": 0, "z": -100
+			},
+			"mat": 1,
+            "boundingBoxPos" : {
+                "x" : -126,
+                "y" : -2,
+                "z" : -101
+            },
+            "boundingBoxDim" : {
+                "x" : 252,
+                "y" : 102,
+                "z" : 4
+            },		
+            "isTransparent" : false,
+            "isGlossy" : false,
+            "enableTextureMap" : false,
+            "texture" : 0,
+            "textureMapCoords" : [
+                {"u" : 100, "v" : 200 },
+                {"u" : 0, "v" : 200},
+                {"u" : 0, "v" : 0}
+            ],
+            "Vx" : 0,
+            "Vy" : 0,
+            "Vz" : 0
+		}
+    ],
+	"mats" : [
+		{
+			"type": "orig",
+			"color": {
+			       "x": 255,
+			       "y": 255,
+			       "z": 255
+				},
+			"specular": 0.9,
+			"lambert": 0.0,
+			"ambient": 0.00
+		},
+		{
+			"type": "orig",
+			"color": {
+			       "x": 255,
+			       "y": 255,
+			       "z": 255
+				},
+		       "specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.05
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 255,
+				"y": 90,
+				"z": 90
+				},
+			"specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.1
+		},
+		{
+			"type": "orig",
+			"color": {
+			       "x": 255,
+			       "y": 255,
+			       "z": 255
+				},
+			"specular": 0.0,
+			"lambert": 1.0,
+			"ambient": 0.00
+		},	
+        {
+			"type": "orig",
+			"color": {
+				"x": 90,
+				"y": 90,
+				"z": 255
+				},
+			"specular": 0.0,
+			"lambert": 0.9,
+			"ambient": 0.0
+		},
+		{
+			"type": "orig",
+			"color": {
+				"x": 255,
+				"y": 255,
+				"z": 255
+				},
+			"specular": 0.9,
+			"lambert": 0.05,
+			"ambient": 0.05
+		}
+	],
+    "textures" : [
+        {
+            "url" : "textures/concrete.jpg"
+        },
+        {
+            "url" : "textures/snow.jpg"
+        },
+        {
+            "url" : "textures/marble.jpg"
+        },
+        {
+            "url" : "textures/red.jpg"
+        },
+        {
+            "url" : "textures/woodGrain.jpg"
+        },
+        {
+            "url" : "textures/ice.jpg"
+        },
+        {
+            "url" : "textures/coke.png"
+        },
+        {
+            "url" : "textures/campbell.jpg"
+        },
+        {
+            "url" : "textures/orange.jpg"
+        },
+        {
+            "url" : "textures/yellow.jpg"
+        }
+    ]
+}
+
+

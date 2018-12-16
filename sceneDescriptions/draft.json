@@ -5,7 +5,7 @@
 			"y": 50,
 			"z": 400
 		},
-		"fieldOfView": 40,
+		"fieldOfView": 60,
 		"toPoint": {
 			"x": 50,
 			"y": 50,
@@ -78,8 +78,9 @@
             "y" : 53,
             "z" : 53
           },
-          "isTransparent" : false,
-          "refracIdx" : 1.5,
+          "isTransparent" : true,
+          "refracIdx" : 1.6,
+          "isGlossy" : false,
           "Vx" : 1,
           "Vy" : 0,
           "Vz" : 0
@@ -99,7 +100,7 @@
             "theta" : 45,
 			"mat": 1,
             "yMin" : 0,
-            "yMax" : 30,
+            "yMax" : 0,
             "Tx" : 30,
             "Ty" : 0,
             "Tz" : 40,
@@ -115,9 +116,9 @@
               "z" : 0
             },
             "boundingBoxDim" : {
-              "x" : 80,
-              "y" : 80,
-              "z" : 80
+              "x" : 1,
+              "y" : 1,
+              "z" : 1
             },
             "isTransparent" : true,
             "refracIdx" : 1.5,
@@ -185,7 +186,7 @@
 			"type": "plane",
             "height" : 100,
             "width" : 100,
-			"mat": 1,
+			"mat": 0,
             "Tx" : 0,
             "Ty" : 0,
             "Tz" : 100,
@@ -209,6 +210,7 @@
             "refracIdx" : 1.5,
             "enableTextureMap" : false,
             "texture" : 0,
+            "isGlossy" : true,
             "Vx" : 0,
             "Vy" : 0,
             "Vz" : 0        
@@ -278,7 +280,7 @@
 			"point3": {
 			"x": 0, "y": 100, "z": 100	
 			},
-			"mat": 2,
+			"mat": 0,
           "boundingBoxPos" : {
             "x" : -1,
             "y" : -1,
@@ -290,6 +292,7 @@
             "z" : 102
           },
           "isTransparent" : false,
+          "isGlossy" : true,
           "Vx" : 0,
           "Vy" : 0,
           "Vz" : 0
@@ -305,7 +308,7 @@
 			"point3": {
 			"x": 0, "y": 0, "z": 0
 			},
-			"mat": 2,
+			"mat": 0,
           "boundingBoxPos" : {
             "x" : -1,
             "y" : -1,
@@ -317,6 +320,7 @@
             "z" : 102
           },
           "isTransparent" : false,
+          "isGlossy" : true,
           "Vx" : 0,
           "Vy" : 0,
           "Vz" : 0

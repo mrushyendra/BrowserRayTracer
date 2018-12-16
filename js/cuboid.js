@@ -68,8 +68,8 @@ function cuboidIntersection(cuboid, ray) {
       txMax = tzMax;
     }
     
-    if(txMin < 0){ //intersection pt is behind ray origin
-        if(txMax < 0){
+    if(txMin < 0.1){ //intersection pt is behind ray origin
+        if(txMax < 0.1){
             return;
         } else{
             var intersectionPt = Vector.add(rayNew.point, Vector.scale(rayNew.vector, txMax));
@@ -87,7 +87,7 @@ function cuboidNormal(cuboid, pos, intersectPtObjSpace){
     var normalObjSpace = {x:0, y:0, z:0};
     var eps = 0.1;
     if(Math.abs(intersectionPtnew.x - cuboid.pos.x) < eps){
-        normaObjSpace = {x : -1, y : 0, z : 0};
+        normaObjSpace = {x : 1, y : 0, z : 0};
     } else if(Math.abs(intersectionPtnew.y - cuboid.pos.y) < eps){
         normalObjSpace = {x : 0, y : -1, z : 0};
     } else if(Math.abs(intersectionPtnew.z - cuboid.pos.z) < eps){
@@ -116,11 +116,11 @@ function updateCuboid(cuboid, timeStep){
     var vx = cuboid.Vx;
     var vy = cuboid.Vy;
     var vz = cuboid.Vz;
-    cuboid.point.x+=(vx*timeStep);
+    cuboid.Tx+=(vx*timeStep);
     cuboid.boundingBoxPos.x+=(vx*timeStep);
-    cuboid.point.y+=(vy*timeStep);
+    cuboid.Ty+=(vy*timeStep);
     cuboid.boundingBoxPos.y+=(vy*timeStep);
-    cuboid.point.z+=(vz*timeStep);
+    cuboid.Tz+=(vz*timeStep);
     cuboid.boundingBoxPos.z+=(vz*timeStep);
 }
 

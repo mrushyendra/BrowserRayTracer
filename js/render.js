@@ -46,7 +46,7 @@ function render(scene) {
     };
 
     var N = parseInt(document.getElementById('N').value);
-    var timeStep = 20;
+    var timeStep = 10;
     if(N < 1 || N > 20){
         console.log("Too few/many frames to save"); //debug
         N = 1; //default

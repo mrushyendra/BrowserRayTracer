@@ -157,15 +157,19 @@ function surface(ray, scene, octree, object, pointAtTime, intersectPtObjSpace, n
 
             //perturb reflected ray slightly for glossy reflection
             if(object.isGlossy){
-                var vecU = Vector.crossProduct(reflectedRay.vector, normal);
-                var vecV = Vector.crossProduct(reflectedRay.vector, vecU);
-                var a = Math.random();
-                var b = Math.random();
-                var theta = Math.acos(1-a);
-                var phi = 2 * Math.PI * b;
-                a = Math.sin(phi) * Math.cos(theta)/16;
-                b = Math.sin(phi) * Math.sin(theta)/16;
-                reflectedRay.vector = Vector.unitVector(Vector.add3(reflectedRay.vector, Vector.scale(vecU, a), Vector.scale(vecV, b)));
+                for(var i = 0; i < 1; ++i){
+                    var vecU = Vector.crossProduct(reflectedRay.vector, normal);
+                    var vecV = Vector.crossProduct(reflectedRay.vector, vecU);
+                    var a = Math.random();
+                    var b = Math.random();
+                    var theta = Math.acos(1-a);
+                    var phi = 2 * Math.PI * b;
+                    a = Math.sin(phi) * Math.cos(theta)/16;
+                    b = Math.sin(phi) * Math.sin(theta)/16;
+                    reflectedRay.vector = Vector.add(reflectedRay.vector,
+                            Vector.scale(Vector.unitVector(Vector.add3(reflectedRay.vector, Vector.scale(vecU, a), Vector.scale(vecV, b))), 0.25));
+                }
+                reflectedRay.vector = Vector.unitVector(reflectedRay.vector);
             }
 
             var reflectedColor = trace(reflectedRay, scene, octree, ++depth);
