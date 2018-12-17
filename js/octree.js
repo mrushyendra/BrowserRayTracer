@@ -122,6 +122,8 @@ function Octree(boundingBoxPos, boundingBoxDim){
             }
         }
         /*
+         * Not used
+         * reduces number of intersections with child octants to max of 3
         var testRay = ray;
         for(var i = 0; i < 3; ++i){
             var xSide = 0; var ySide = 0; var zSide = 0;
@@ -264,8 +266,6 @@ function Octree(boundingBoxPos, boundingBoxDim){
 
         return [true, txMin]; 
     }
-
-//functions not present: delete object, update object positions
 }
 
 

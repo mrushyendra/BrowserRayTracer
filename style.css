@@ -1,0 +1,24 @@
+body {
+    font-family: "Lucida Console", Monaco, monospace;
+    text-align: center;
+}
+#sceneDescrUpload {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 1.0rem;
+}
+#renderImageBtn {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: 600;
+    line-height: 1;
+    margin-top: 1.0rem;
+}
+#downloadBtn {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: 600;
+    line-height: 1;
+    margin-top: 1.0rem;
+    margin: 0 auto;
+}
+

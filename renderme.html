@@ -1,19 +1,31 @@
 ﻿<!DOCTYPE HTML>
 <html>
   <head>
-   Final Project - Maganty Rushyendra
+      <title> Final Project - Maganty Rushyendra </title>
+      <link href="style.css" rel="stylesheet" type="text/css">
   </head> 
-   Ray tracing -- Final Project <br>
-   Rendering will take a while.<br>
 
-   Upload scene description file:
+  <body>
+      <h1>Ray Tracer Final Project </h1>
+
+      <p>
+   Upload scene description file <br>
    <input type="file" id="sceneDescrUpload" accept=".json"/><br>
-   Number of frames to save: <input id="N" type="number"> <br>
-   
-   <button onclick="render(scene)">Make the picture </button><br>
+      </p>
+      <p>
+   Number of frames to save (1-5): </br>
+   <input id="N" type="number"> </br>
+      </p>
+
+   <button id="renderImageBtn" onclick="render(scene)">Make the picture </button><br>
+   (It might take up to a couple of minutes for each frame to render. <br>
+   The download link will appear once all frames have been rendered.)<br>
+
    <canvas id="c" width="800" height="600"></canvas><br>
    <a id="downloadLink" hidden></a>
+   <p>
    <button id="downloadBtn" onclick="downloadFrames(frames)" style="display:none"> Download Frames </button>
+   </p>
 
    <script src="js/setup.js">	</script><!Initializes canvas and reads in scene description>
    <script src="js/octree.js"> </script><!Creates octree from given list of objects>

@@ -1,6 +1,4 @@
-// for Assign 5
 // Compute normal of object
-
 function objectNormal(object, point, intersectPtObjSpace){
 
 if (object.type == 'sphere') return (sphereNormal (object, point));

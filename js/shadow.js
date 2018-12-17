@@ -1,7 +1,4 @@
-// This is the part that makes objects cast shadows on each other: from here
-// we'd check to see if the area in a shadowy spot can 'see' a light, and when
-// this returns `false`, we make the area shadowy.
-
+//given an intersection point and light source, returns true if there exists direct path from object to light
 function isLightVisible(pt, scene, octree, light) {
 
     var distObject =  intersectScene({ 

@@ -74,8 +74,8 @@
             "theta" : 45,
 			"mat": 1,
             "yMin" : 0,
-            "yMax" : 30,
-            "Tx" : 70,
+            "yMax" : 50,
+            "Tx" : 40,
             "Ty" : 0,
             "Tz" : 0,
             "rx" : 0,
@@ -85,14 +85,14 @@
             "sy" : 1,
             "sz" : 1,
             "boundingBoxPos" : {
-              "x" : 40,
-              "y" : 0,
-              "z" : -50
+              "x" : -20,
+              "y" : -10,
+              "z" : -60
             },
             "boundingBoxDim" : {
-              "x" : 80,
-              "y" : 80,
-              "z" : 80
+              "x" : 130,
+              "y" : 130,
+              "z" : 130
             },
             "isTransparent" : false,
             "refracIdx" : 1.5,

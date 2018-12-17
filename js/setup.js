@@ -16,8 +16,6 @@ c.height = height;
 var ctx = c.getContext('2d');
 var data = ctx.getImageData(0, 0, width, height);
 
-// # The Scene
-// In this file, the original red/blue/white room with overhead white light, and orange and blue corner lights
 var scene = {};
 
 //Array to hold the saved frames
@@ -63,6 +61,7 @@ function loadScene(sceneRaw){
         img.src = scene.textures[i].url;
     }
 
+    //function pointers to functions that update translation and rotation factors of an object based on the timestep
     scene.updatePosFns = {
         "sphere" : updateSphere,
         "triangle" : updateTri,

@@ -35,15 +35,6 @@ function calcRefractedRay(ray, normal, intersectionPt, refracIdx){
         point : intersectionPt,
         vector : new Point(0,0,0)
     };
-    
-    /*
-    var bias = Vector.scale(normal, 0.01);
-    if(Vector.dotProduct(ray.vector, normal) < 0){ //check which side of surface light ray strikes in order to add bias in appropriate direction
-        refractedRay.point = Vector.subtract(refractedRay.point, bias); //is outside
-    } else {
-        refractedRay.point = Vector.add(refractedRay.point, bias);
-    }
-    */
 
     var cosI = Math.max(Math.min(1, Vector.dotProduct(ray.vector, normal)), -1);
     var n1 = 1;
@@ -146,10 +137,7 @@ function surface(ray, scene, octree, object, pointAtTime, intersectPtObjSpace, n
         lambertAmount = Vector.scale(lambertAmount, 1./255.);
 
         if (scene.mats[object.mat].specular){
-            // This is basically the same thing as what we did in `render()`, just
-            // instead of looking from the viewpoint of the camera, we're looking
-            // from a point on the surface of a shiny object, seeing what it sees
-            // and making that part of a reflection.
+            // 'Look' from a point on the surface of a shiny object, see what it sees and make that part of a reflection.
             var reflectedRay = {
                 point: pointAtTime,
                 vector: Vector.reflectThrough(Vector.scale(ray.vector, -1), normal)
@@ -178,9 +166,7 @@ function surface(ray, scene, octree, object, pointAtTime, intersectPtObjSpace, n
             }
         }
 
-        // **Ambient** colors shine bright regardless of whether there's a light visible -
-        // a circle with a totally ambient blue color will always just be a flat blue
-        // circle.
+        //Add ambient component if any
         return Vector.add3(c,
             lambertAmount,
             Vector.scale(objColor, scene.mats[object.mat].ambient));

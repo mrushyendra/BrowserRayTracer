@@ -1,9 +1,6 @@
-
-
 // # Detecting collisions against all objects
 //
-// Given a ray, let's figure out whether it hits anything, and if so,
-// what's the closest thing it hits.
+//For the ray supplied, determine the closest object it hits, if any, and return object + distance to object
 function intersectScene(ray, octree, scene) {
     // The base case is that it hits nothing, and travels for `Infinity`
     var closest = [Infinity, null, null];

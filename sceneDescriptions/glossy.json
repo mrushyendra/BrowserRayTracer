@@ -318,7 +318,7 @@
 			"point3": {
 			"x": 0, "y": 100, "z": 100	
 			},
-			"mat": 2,
+			"mat": 0,
           "boundingBoxPos" : {
             "x" : -1,
             "y" : -1,
@@ -331,7 +331,7 @@
           },
           "isTransparent" : false,
           "enableTextureMap" : false,
-          "isGlossy" : false
+          "isGlossy" : true
 		},
 		{
 			"type": "triangle",
@@ -344,7 +344,7 @@
 			"point3": {
 			"x": 0, "y": 0, "z": 0
 			},
-			"mat": 2,
+			"mat": 0,
           "boundingBoxPos" : {
             "x" : -1,
             "y" : -1,
@@ -357,7 +357,7 @@
           },
           "isTransparent" : false,
           "enableTextureMap" : false,
-          "isGlossy" : false
+          "isGlossy" : true
 		},
 		{
 			"type": "triangle",

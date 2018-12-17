@@ -37,10 +37,6 @@ if ( (d1 + Vector.dotProduct(P,n1)) < 0) return undefined;
 return [dist, null];
 }
 
-// A normal is, at each point on the surface of a sphere or some other object,
-// a vector that's perpendicular to the surface and radiates outward. We need
-// to know this so that we can calculate the way that a ray reflects off of
-// the surface
 function triNormal(tri) {
     return Vector.unitVector(Vector.crossProduct(Vector.subtract(tri.point2,tri.point1) ,Vector.subtract(tri.point3,tri.point1)));
 }

@@ -98,14 +98,14 @@
             "sy" : 1,
             "sz" : 1,
             "boundingBoxPos" : {
-              "x" : -1,
-              "y" : -1,
+              "x" : -5,
+              "y" : -5,
               "z" : -30
             },
             "boundingBoxDim" : {
-              "x" : 42,
-              "y" : 55,
-              "z" : 42
+              "x" : 50,
+              "y" : 65,
+              "z" : 50
             },
             "isTransparent" : false,
             "refracIdx" : 1.5,

@@ -6,7 +6,7 @@ function trace(ray, scene, octree, depth) {
     // to find what the ray reflected into. Since this could easily go
     // on forever, first check that we haven't gone more than three bounces
     // into a reflection.
-    if (depth > 3) return Vector.ZEROcp;
+    if (depth > 9) return Vector.ZEROcp;
 
     var distObject = intersectScene(ray, octree, scene);
 
@@ -20,10 +20,7 @@ function trace(ray, scene, octree, depth) {
         intersectPtObjSpace = distObject[1],
         object = distObject[2];
 
-    // The `pointAtTime` is another way of saying the 'intersection point'
-    // of this ray into this object. We compute this by simply taking
-    // the direction of the ray and making it as long as the distance
-    // returned by the intersection check.
+    // `pointAtTime` refers to 'intersection point'
     var pointAtTime = Vector.add(ray.point, Vector.scale(ray.vector, dist));
 
     return surface(ray, scene, octree, object, pointAtTime, intersectPtObjSpace, objectNormal(object, pointAtTime, intersectPtObjSpace), depth);

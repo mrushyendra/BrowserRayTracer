@@ -1,6 +1,6 @@
 
 function render(scene) {
-    // first 'unpack' the scene to make it easier to reference
+    //unpack the scene to make it easier to reference
     console.log(scene);
     var camera = scene.camera,
         objects = scene.objects,
@@ -11,23 +11,7 @@ function render(scene) {
     var img = [ ];
     var img2 = [ ];
 
-    // This process
-    // is a bit odd, because there's a disconnect between pixels and vectors:
-    // given the left and right, top and bottom rays, the rays we shoot are just
-    // interpolated between them in little increments.
-    //
-    // Starting with the height and width of the scene, the camera's place,
-    // direction, and field of view, we calculate factors that create
-    // `width*height` vectors for each ray
-
-    // Start by creating a simple vector pointing in the direction the camera is
-    // pointing - a unit vector
-
     var eyeVector = Vector.unitVector(Vector.subtract(camera.toPoint, camera.point)),
-        // and then we'll rotate this by combining it with a version that's turned
-        // 90° right and one that's turned 90° up. 
-        // we use a pure 'UP' vector to turn the camera right, and that 'right'
-        // vector to turn the camera up.
         vpRight = Vector.unitVector(Vector.crossProduct(eyeVector, camera.up)),
         vpUp = Vector.unitVector(Vector.crossProduct(vpRight, eyeVector)),
 
@@ -61,9 +45,9 @@ function render(scene) {
               // vectors so that we generate versions of the `eyeVector` that are
               // skewed in each necessary direction.
 
-              // For Assign 5, brute-force antialiasing with 9 samples/pixel
                 color = Vector.ZERO;
               
+            //antialiasing by shooting multiple rays per pixel
               for (var s = -.4; s < .5; s+=.4) {
                     for (var r = -.4; r < .5; r +=.4) {
                   var xcomp = Vector.scale(vpRight, ((x+s) * pixelWidth) - halfWidth);
@@ -88,8 +72,7 @@ function render(scene) {
         // adjust so fits into 0 to 255
         img2 = tone_map(img);
 
-        // we computed from the bottom of the image up
-        // image on the canvas has top row written first
+        //reverse direction of image to make it appear right side up, since canvas is computed top-down, with (0,0) at top left
         for(x=0;x<width;x++){
           for(y=0;y <height;y++){
             index = (x * 3) + (y* width  * 3);
