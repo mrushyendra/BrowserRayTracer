@@ -9,9 +9,12 @@ A ray tracer written in native JavaScript that should run on any mainstream brow
 ## Instructions
 
 1. Clone the project
-2. Open renderme.html
-3. Upload any sample file from the 'sceneDescriptions' folder
-4. Select 'Make the picture'
+2. Navigate to the folder
+3. Setup a simple [local HTTP server](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)
+        `python3 -m http.server`
+4. Open a web browser and navigate to `localhost:<port number>/renderme.html`
+5. Upload any sample file from the 'sceneDescriptions' folder
+6. Select 'Render'
 
 To save multiple images of a scene at regular time steps, enter the number of frames you wish to save in the appropriate input box on the page. Note that rendering each frame might take quite while depending on your PC. Once you have rendered an image, refresh the  webpage if you wish to render a different image.
 

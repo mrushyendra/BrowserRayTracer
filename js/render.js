@@ -47,7 +47,7 @@ function render(scene) {
 
                 color = Vector.ZERO;
               
-            //antialiasing by shooting multiple rays per pixel
+              // antialiasing by shooting multiple rays per pixel
               for (var s = -.4; s < .5; s+=.4) {
                     for (var r = -.4; r < .5; r +=.4) {
                   var xcomp = Vector.scale(vpRight, ((x+s) * pixelWidth) - halfWidth);

@@ -11,7 +11,7 @@ function trace(ray, scene, octree, depth) {
     var distObject = intersectScene(ray, octree, scene);
 
     // If we don't hit anything, fill this pixel with the background color -
-    // in this case, white.
+    // in this case, black.
     if (distObject[0] === Infinity) {
         return Vector.ZERO;
     } 
