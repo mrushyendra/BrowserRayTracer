@@ -1,5 +1,3 @@
-# browserRayTracer
-
 ## About
 
 A ray tracer written in native JavaScript that should run on any mainstream browser. Features include antialiasing, Fresnel reflection and refraction, texture mapping, glossy reflectance, and multiple geometric primitives at arbitrary positions and orientations. Reads in scene descriptions from json files, and implements an octree to accelerate rendering of primitives.
